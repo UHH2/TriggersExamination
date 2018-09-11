@@ -77,7 +77,7 @@ bool EventFilter::passes(const uhh2::Event &event){
 
   for(size_t i=0; i< rlsev.size(); i++){
     if(rlsev[i].run==event.run && rlsev[i].lumiblock==event.luminosityBlock && rlsev[i].event == event.event){
-      std::cout<<"run:lumi:event = "<<event.run<<" "<<event.luminosityBlock<<" "<<event.event<<std::endl;
+      //      std::cout<<"run:lumi:event = "<<event.run<<" "<<event.luminosityBlock<<" "<<event.event<<std::endl;
       return true;
     }
   }

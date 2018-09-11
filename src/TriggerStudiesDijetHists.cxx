@@ -12,15 +12,19 @@ using namespace uhh2examples;
 TriggerStudiesDijetHists::TriggerStudiesDijetHists(Context & ctx, const string & dirname): Hists(ctx, dirname){
   // book all histograms here
   // jets
-  book<TH1F>("eta_jetTag", "#eta^{jet tag}; #eta^{jetTag}; ", 100, -5.2, 5.2);
-  book<TH1F>("eta_jetProbe", "#eta^{jet probe}; #eta^{jetProbe}; ", 100, -5.2, 5.2);
-  book<TH1F>("eta_jet3", "#eta^{jet 3}; #eta^{jet 3}; ", 100, -5.2, 5.2);
 
-  book<TH1F>("pt_jetTag", "pt^{jet tag};pt^{jetTag}, GeV", 100, 0, 1000);
-  book<TH1F>("pt_jetProbe", "pt^{jet probe};pt^{jetProbe}, GeV", 100, 0, 1000);
-  book<TH1F>("pt_jet3", "pt^{jet 3};pt^{jet 3}, GeV", 100, 0, 1000);
+  double eta_bins[] = {-5.191, -3.839, -3.489, -3.139, -2.964, -2.853, -2.65, -2.5, -2.322, -2.172, -1.93, -1.653, -1.479, -1.305, -1.044, -0.783, -0.522, -0.261, 0.000, 0.261, 0.522, 0.783, 1.044, 1.305, 1.479, 1.653, 1.930, 2.172, 2.322, 2.500, 2.650, 2.853, 2.964, 3.139, 3.489, 3.839, 5.191};
+  //(sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins
 
-  book<TH1F>("pt_jet_ave", "pt^{jet ave}, GeV", 100, 0, 1000);
+  book<TH1F>("eta_jetTag", "#eta^{jet tag}; #eta^{jetTag}; ", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);
+  book<TH1F>("eta_jetProbe", "#eta^{jet probe}; #eta^{jetProbe}; ", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);
+  book<TH1F>("eta_jet3", "#eta^{jet 3}; #eta^{jet 3}; ", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);
+
+  book<TH1F>("pt_jetTag", "pt^{jet tag};pt^{jetTag}, GeV", 50, 0, 1000);
+  book<TH1F>("pt_jetProbe", "pt^{jet probe};pt^{jetProbe}, GeV", 50, 0, 1000);
+  book<TH1F>("pt_jet3", "pt^{jet 3};pt^{jet 3}, GeV", 50, 0, 1000);
+
+  book<TH1F>("pt_jet_ave", "pt^{jet ave}, GeV", 50, 0, 1000);
 
 
   book<TH1F>("pBalAsymmetry", "pBalAsymmetry; A; Counts", 100, -2, 2.);
@@ -40,21 +44,21 @@ TriggerStudiesDijetHists::TriggerStudiesDijetHists(Context & ctx, const string &
   book<TH1I>("L1EG_drJetProbeMin_BX", "L1EG_drJetProbeMin_BX; L1EG BX [#Delta^{min}R(probe jet, L1EG)]; Counts", 7,-3,3);//closest seed to jetProbe
   
 
-  book<TH1F>("L1EG_drJetTagMin_Pt_bxMinus1", "L1EG_drJetTagMin_Pt_bxMinus1; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1EG_drJetTagMin_Pt_bxPlus1", "L1EG_drJetTagMin_Pt_bxPlus1; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1EG_drJetTagMin_Pt_bx0", "L1EG_drJetTagMin_Pt_bx0; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Pt_bxMinus1", "L1EG_drJetTagMin_Pt_bxMinus1; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Pt_bxPlus1", "L1EG_drJetTagMin_Pt_bxPlus1; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Pt_bx0", "L1EG_drJetTagMin_Pt_bx0; L1EG pt [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
 
-  book<TH1F>("L1EG_drJetProbeMin_Pt_bxMinus1", "L1EG_drJetProbeMin_Pt_bxMinus1; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_Pt_bxPlus1", "L1EG_drJetProbeMin_Pt_bxPlus1; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_Pt_bx0", "L1EG_drJetProbeMin_Pt_bx0; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Pt_bxMinus1", "L1EG_drJetProbeMin_Pt_bxMinus1; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Pt_bxPlus1", "L1EG_drJetProbeMin_Pt_bxPlus1; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Pt_bx0", "L1EG_drJetProbeMin_Pt_bx0; L1EG pt [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
 
-  book<TH1F>("L1EG_drJetTagMin_Ptave_bxMinus1", "L1EG_drJetTagMin_Ptave_bxMinus1; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1EG_drJetTagMin_Ptave_bxPlus1", "L1EG_drJetTagMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1EG_drJetTagMin_Ptave_bx0", "L1EG_drJetTagMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Ptave_bxMinus1", "L1EG_drJetTagMin_Ptave_bxMinus1; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Ptave_bxPlus1", "L1EG_drJetTagMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1EG_drJetTagMin_Ptave_bx0", "L1EG_drJetTagMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(tag jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetTag
 
-  book<TH1F>("L1EG_drJetProbeMin_Ptave_bxMinus1", "L1EG_drJetProbeMin_Ptave_bxMinus1; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_Ptave_bxPlus1", "L1EG_drJetProbeMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_Ptave_bx0", "L1EG_drJetProbeMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Ptave_bxMinus1", "L1EG_drJetProbeMin_Ptave_bxMinus1; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Ptave_bxPlus1", "L1EG_drJetProbeMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_Ptave_bx0", "L1EG_drJetProbeMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(probe jet, L1EG)]; Counts", 50, 0, 1000);//closest seed to jetProbe
 
   book<TH1F>("L1EG_drJetTagMin_dR_bxMinus1", "L1EG_drJetTagMin_dR_bxMinus1; #Delta R(tag jet, L1EG) [#Delta^{min}R(tag jet, L1EG)]; Counts", 200, 0, 1.);//closest seed to jetTag
   book<TH1F>("L1EG_drJetTagMin_dR_bxPlus1", "L1EG_drJetTagMin_dR_bxPlus1; #Delta R(tag jet, L1EG) [#Delta^{min}R(tag jet, L1EG)]; Counts", 200, 0, 1.);//closest seed to jetTag
@@ -82,23 +86,23 @@ TriggerStudiesDijetHists::TriggerStudiesDijetHists(Context & ctx, const string &
   book<TH1F>("L1EG_drJetProbeMin_mpfResponse_bxPlus1", "L1EG_drJetProbeMin_mpfResponse_bxPlus1; MPF response [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0,5.0);//closest seed to jetProbe
   book<TH1F>("L1EG_drJetProbeMin_mpfResponse_bx0", "L1EG_drJetProbeMin_mpfResponse_bx0; MPF response [#Delta^{min}R(probe jet, L1EG)]; Counts", 100, 0,5.0);//closest seed to jetProbe
 
-  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe", "L1EG_drJetProbeMin_neuEMfracProbe; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bxMinus1", "L1EG_drJetProbeMin_neuEMfracProbe_bxMinus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bxPlus1", "L1EG_drJetProbeMin_neuEMfracProbe_bxPlus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bx0", "L1EG_drJetProbeMin_neuEMfracProbe_bx0; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe", "L1EG_drJetProbeMin_chEMfracProbe; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bxMinus1", "L1EG_drJetProbeMin_chEMfracProbe_bxMinus1; probe jet charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bxPlus1", "L1EG_drJetProbeMin_chEMfracProbe_bxPlus1; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bx0", "L1EG_drJetProbeMin_chEMfracProbe_bx0; probe jet EM  charged fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe", "L1EG_drJetProbeMin_neuEMfracProbe; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bxMinus1", "L1EG_drJetProbeMin_neuEMfracProbe_bxMinus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bxPlus1", "L1EG_drJetProbeMin_neuEMfracProbe_bxPlus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuEMfracProbe_bx0", "L1EG_drJetProbeMin_neuEMfracProbe_bx0; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe", "L1EG_drJetProbeMin_chEMfracProbe; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bxMinus1", "L1EG_drJetProbeMin_chEMfracProbe_bxMinus1; probe jet charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bxPlus1", "L1EG_drJetProbeMin_chEMfracProbe_bxPlus1; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chEMfracProbe_bx0", "L1EG_drJetProbeMin_chEMfracProbe_bx0; probe jet EM  charged fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
 
-  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe", "L1EG_drJetProbeMin_neuHADfracProbe; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bxMinus1", "L1EG_drJetProbeMin_neuHADfracProbe_bxMinus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bxPlus1", "L1EG_drJetProbeMin_neuHADfracProbe_bxPlus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bx0", "L1EG_drJetProbeMin_neuHADfracProbe_bx0; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe", "L1EG_drJetProbeMin_chHADfracProbe; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bxMinus1", "L1EG_drJetProbeMin_chHADfracProbe_bxMinus1; probe jet charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bxPlus1", "L1EG_drJetProbeMin_chHADfracProbe_bxPlus1; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bx0", "L1EG_drJetProbeMin_chHADfracProbe_bx0; probe jet HAD  charged fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 88,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe", "L1EG_drJetProbeMin_neuHADfracProbe; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bxMinus1", "L1EG_drJetProbeMin_neuHADfracProbe_bxMinus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bxPlus1", "L1EG_drJetProbeMin_neuHADfracProbe_bxPlus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_neuHADfracProbe_bx0", "L1EG_drJetProbeMin_neuHADfracProbe_bx0; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe", "L1EG_drJetProbeMin_chHADfracProbe; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bxMinus1", "L1EG_drJetProbeMin_chHADfracProbe_bxMinus1; probe jet charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bxPlus1", "L1EG_drJetProbeMin_chHADfracProbe_bxPlus1; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1EG_drJetProbeMin_chHADfracProbe_bx0", "L1EG_drJetProbeMin_chHADfracProbe_bx0; probe jet HAD  charged fraction [#Delta^{min}R(probe jet, L1EG)]; Counts", 44,0,1.1);//closest seed to jetProbe
 
 //L1J seed
 
@@ -112,33 +116,33 @@ TriggerStudiesDijetHists::TriggerStudiesDijetHists(Context & ctx, const string &
   book<TH1I>("L1J_drJetTagMin_BX", "L1J_drJetTagMin_BX; L1Jet BX [#Delta^{min}R(tag jet, L1Jet)]; Counts", 7,-3,3);//closest seed to jetTag
   book<TH1I>("L1J_drJetProbeMin_BX", "L1J_drJetProbeMin_BX; L1Jet BX [#Delta^{min}R(probe jet, L1Jet)]; Counts", 7,-3,3);//closest seed to jetProbe
 
-  book<TH1F>("L1J_drJetTagMin_Pt_bxMinus1", "L1J_drJetTagMin_Pt_bxMinus1; L1Jet pt [ #Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1J_drJetTagMin_Pt_bxPlus1", "L1J_drJetTagMin_Pt_bxPlus1; L1Jet pt [#Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1J_drJetTagMin_Pt_bx0", "L1J_drJetTagMin_Pt_bx0; L1Jet pt [#Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Pt_bxMinus1", "L1J_drJetTagMin_Pt_bxMinus1; L1Jet pt [ #Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Pt_bxPlus1", "L1J_drJetTagMin_Pt_bxPlus1; L1Jet pt [#Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Pt_bx0", "L1J_drJetTagMin_Pt_bx0; L1Jet pt [#Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
 
-  book<TH1F>("L1J_drJetProbeMin_Pt_bxMinus1", "L1J_drJetProbeMin_Pt_bxMinus1; L1Jet pt [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Pt_bxPlus1", "L1J_drJetProbeMin_Pt_bxPlus1; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Pt_bx0", "L1J_drJetProbeMin_Pt_bx0; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Pt", "L1J_drJetProbeMin_Pt; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Pt_bxMinus1", "L1J_drJetProbeMin_Pt_bxMinus1; L1Jet pt [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Pt_bxPlus1", "L1J_drJetProbeMin_Pt_bxPlus1; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Pt_bx0", "L1J_drJetProbeMin_Pt_bx0; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Pt", "L1J_drJetProbeMin_Pt; L1Jet pt [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
 
-  book<TH1F>("L1J_drJetTagMin_Ptave_bxMinus1", "L1J_drJetTagMin_Ptave_bxMinus1; pt_{ave} [ #Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1J_drJetTagMin_Ptave_bxPlus1", "L1J_drJetTagMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
-  book<TH1F>("L1J_drJetTagMin_Ptave_bx0", "L1J_drJetTagMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(tag jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Ptave_bxMinus1", "L1J_drJetTagMin_Ptave_bxMinus1; pt_{ave} [ #Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Ptave_bxPlus1", "L1J_drJetTagMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
+  book<TH1F>("L1J_drJetTagMin_Ptave_bx0", "L1J_drJetTagMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(tag jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetTag
 
-  book<TH1F>("L1J_drJetProbeMin_Ptave_bxMinus1", "L1J_drJetProbeMin_Ptave_bxMinus1; pt_{ave} [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Ptave_bxPlus1", "L1J_drJetProbeMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Ptave_bx0", "L1J_drJetProbeMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_Ptave", "L1J_drJetProbeMin_Ptave; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Ptave_bxMinus1", "L1J_drJetProbeMin_Ptave_bxMinus1; pt_{ave} [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Ptave_bxPlus1", "L1J_drJetProbeMin_Ptave_bxPlus1; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Ptave_bx0", "L1J_drJetProbeMin_Ptave_bx0; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_Ptave", "L1J_drJetProbeMin_Ptave; pt_{ave} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
 
 
-  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bxMinus1", "L1J_drJetProbeMin_EtaProbe_bxMinus1; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, -5.2, 5.2);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bxPlus1", "L1J_drJetProbeMin_EtaProbe_bxPlus1; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, -5.2, 5.2);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bx0", "L1J_drJetProbeMin_EtaProbe_bx0; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, -5.2, 5.2);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_EtaProbe", "L1J_drJetProbeMin_EtaProbe; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, -5.2, 5.2);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_PtProbe_bxMinus1", "L1J_drJetProbeMin_PtProbe_bxMinus1; Pt_{probe} [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_PtProbe_bxPlus1", "L1J_drJetProbeMin_PtProbe_bxPlus1; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_PtProbe_bx0", "L1J_drJetProbeMin_PtProbe_bx0; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_PtProbe", "L1J_drJetProbeMin_PtProbe; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bxMinus1", "L1J_drJetProbeMin_EtaProbe_bxMinus1; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bxPlus1", "L1J_drJetProbeMin_EtaProbe_bxPlus1; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_EtaProbe_bx0", "L1J_drJetProbeMin_EtaProbe_bx0; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_EtaProbe", "L1J_drJetProbeMin_EtaProbe; #eta_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_PtProbe_bxMinus1", "L1J_drJetProbeMin_PtProbe_bxMinus1; Pt_{probe} [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_PtProbe_bxPlus1", "L1J_drJetProbeMin_PtProbe_bxPlus1; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_PtProbe_bx0", "L1J_drJetProbeMin_PtProbe_bx0; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_PtProbe", "L1J_drJetProbeMin_PtProbe; Pt_{probe} [#Delta^{min}R(probe jet, L1Jet)]; Counts", 50, 0, 1000);//closest seed to jetProbe
 
   book<TH1F>("L1J_drJetTagMin_dR_bxMinus1", "L1J_drJetTagMin_dR_bxMinus1; #Delta R(tag jet, L1Jet) [ #Delta^{min}R(tag jet, L1Jet)]; Counts", 200, 0, 1.);//closest seed to jetTag
   book<TH1F>("L1J_drJetTagMin_dR_bxPlus1", "L1J_drJetTagMin_dR_bxPlus1; #Delta R(tag jet, L1Jet) [#Delta^{min}R(tag jet, L1Jet)]; Counts", 200, 0, 1.);//closest seed to jetTag
@@ -167,36 +171,58 @@ TriggerStudiesDijetHists::TriggerStudiesDijetHists(Context & ctx, const string &
   book<TH1F>("L1J_drJetProbeMin_mpfResponse_bxMinus1", "L1J_drJetProbeMin_mpfResponse_bxMinus1; MPF response [ #Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0,5.0);//closest seed to jetProbe
   book<TH1F>("L1J_drJetProbeMin_mpfResponse_bxPlus1", "L1J_drJetProbeMin_mpfResponse_bxPlus1; MPF response [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0,5.0);//closest seed to jetProbe
   book<TH1F>("L1J_drJetProbeMin_mpfResponse_bx0", "L1J_drJetProbeMin_mpfResponse_bx0; MPF response [#Delta^{min}R(probe jet, L1Jet)]; Counts", 100, 0,5.0);//closest seed to jetProbe
-  //  book<TH2F>("L1J_drJetProbeMin__eta_phi","L1J_drJetProbeMin__eta_phi; probe jet #eta; probe jet #phi", 100, -5.2, 5.2, 100, -3.14, 3.41);
+  //  book<TH2F>("L1J_drJetProbeMin__eta_phi","L1J_drJetProbeMin__eta_phi; probe jet #eta; probe jet #phi", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins, 100, -3.14, 3.41);
 
- book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe", "L1J_drJetProbeMin_neuEMfracProbe; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bxMinus1", "L1J_drJetProbeMin_neuEMfracProbe_bxMinus1; probe jet neutral EM fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bxPlus1", "L1J_drJetProbeMin_neuEMfracProbe_bxPlus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bx0", "L1J_drJetProbeMin_neuEMfracProbe_bx0; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe", "L1J_drJetProbeMin_chEMfracProbe; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bxMinus1", "L1J_drJetProbeMin_chEMfracProbe_bxMinus1; probe jet charged EM fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bxPlus1", "L1J_drJetProbeMin_chEMfracProbe_bxPlus1; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bx0", "L1J_drJetProbeMin_chEMfracProbe_bx0; probe jet EM  charged fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
+ book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe", "L1J_drJetProbeMin_neuEMfracProbe; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bxMinus1", "L1J_drJetProbeMin_neuEMfracProbe_bxMinus1; probe jet neutral EM fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bxPlus1", "L1J_drJetProbeMin_neuEMfracProbe_bxPlus1; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuEMfracProbe_bx0", "L1J_drJetProbeMin_neuEMfracProbe_bx0; probe jet neutral EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe", "L1J_drJetProbeMin_chEMfracProbe; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bxMinus1", "L1J_drJetProbeMin_chEMfracProbe_bxMinus1; probe jet charged EM fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bxPlus1", "L1J_drJetProbeMin_chEMfracProbe_bxPlus1; probe jet  charged EM fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chEMfracProbe_bx0", "L1J_drJetProbeMin_chEMfracProbe_bx0; probe jet EM  charged fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
 
-  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe", "L1J_drJetProbeMin_neuHADfracProbe; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bxMinus1", "L1J_drJetProbeMin_neuHADfracProbe_bxMinus1; probe jet neutral HAD fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bxPlus1", "L1J_drJetProbeMin_neuHADfracProbe_bxPlus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bx0", "L1J_drJetProbeMin_neuHADfracProbe_bx0; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe", "L1J_drJetProbeMin_chHADfracProbe; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bxMinus1", "L1J_drJetProbeMin_chHADfracProbe_bxMinus1; probe jet charged HAD fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bxPlus1", "L1J_drJetProbeMin_chHADfracProbe_bxPlus1; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
-  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bx0", "L1J_drJetProbeMin_chHADfracProbe_bx0; probe jet HAD  charged fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 88,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe", "L1J_drJetProbeMin_neuHADfracProbe; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bxMinus1", "L1J_drJetProbeMin_neuHADfracProbe_bxMinus1; probe jet neutral HAD fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bxPlus1", "L1J_drJetProbeMin_neuHADfracProbe_bxPlus1; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_neuHADfracProbe_bx0", "L1J_drJetProbeMin_neuHADfracProbe_bx0; probe jet neutral HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe", "L1J_drJetProbeMin_chHADfracProbe; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bxMinus1", "L1J_drJetProbeMin_chHADfracProbe_bxMinus1; probe jet charged HAD fraction [ #Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bxPlus1", "L1J_drJetProbeMin_chHADfracProbe_bxPlus1; probe jet  charged HAD fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_chHADfracProbe_bx0", "L1J_drJetProbeMin_chHADfracProbe_bx0; probe jet HAD  charged fraction [#Delta^{min}R(probe jet, L1J)]; Counts", 44,0,1.1);//closest seed to jetProbe
 
-  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi", "L1J_drJetProbeMin_ProbeEtaProbePhi; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 20,-5.2,5.2, 20,-3.14,3.14);//closest seed to jetProbe
-  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bx0", "L1J_drJetProbeMin_ProbeEtaProbePhi_bx0; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 20,-5.2,5.2, 20,-3.14,3.14);//closest seed to jetProbe
-  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bxPlus1", "L1J_drJetProbeMin_ProbeEtaProbePhi_bxPlus1; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 20,-5.2,5.2, 20,-3.14,3.14);//closest seed to jetProbe
-  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bxMinus1", "L1J_drJetProbeMin_ProbeEtaProbePhi_bxMinus1; probe jet #eta [ #Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 20,-5.2,5.2, 20,-3.14,3.14);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_NPV", "L1J_drJetProbeMin_NPV; NPV [#Delta^{min}R(probe jet, L1J)]; Counts", 100,0,100);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_NPV_bxMinus1", "L1J_drJetProbeMin_NPV_bxMinus1; NPV [#Delta^{min}R(probe jet, L1J)]; Counts", 100,0,100);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_NPV_bxPlus1", "L1J_drJetProbeMin_NPV_bxPlus1; NPV [#Delta^{min}R(probe jet, L1J)]; Counts", 100,0,100);//closest seed to jetProbe
+  book<TH1F>("L1J_drJetProbeMin_NPV_bx0", "L1J_drJetProbeMin_NPV_bx0; NPV [#Delta^{min}R(probe jet, L1J)]; Counts", 100,0,100);//closest seed to jetProbe
+
+
+  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi", "L1J_drJetProbeMin_ProbeEtaProbePhi; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins, 20,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bx0", "L1J_drJetProbeMin_ProbeEtaProbePhi_bx0; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins, 20,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bxPlus1", "L1J_drJetProbeMin_ProbeEtaProbePhi_bxPlus1; probe jet #eta [#Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins, 20,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_ProbeEtaProbePhi_bxMinus1", "L1J_drJetProbeMin_ProbeEtaProbePhi_bxMinus1; probe jet #eta [ #Delta^{min}R(probe jet, L1J)]; probe jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", (sizeof(eta_bins) / sizeof(eta_bins[0]) - 1), eta_bins, 20,-3.14,3.14);//closest seed to jetProbe
 
   book<TH2F>("L1J_drJetProbeMin_dR0dRm1", "L1J_drJetProbeMin_dR0dRm; #Delta R(probe jet, L1Jet BX=0) [#Delta^{min}R(probe jet, L1Jet)];#Delta R(probe jet, L1Jet BX=-1) [#Delta^{min}R(probe jet, L1Jet)]", 30, -0.1, 0.5, 30, -0.1, 0.5);
   book<TH2F>("L1J_drJetProbeMin_dR0dRp1", "L1J_drJetProbeMin_dR0dRp; #Delta R(probe jet, L1Jet BX=0) [#Delta^{min}R(probe jet, L1Jet)];#Delta R(probe jet, L1Jet BX=+1) [#Delta^{min}R(probe jet, L1Jet)]", 30, -0.1, 0.5, 30, -0.1, 0.5);
-  book<TH2F>("L1J_drJetProbeMin_dPt0dPtm1", "L1J_drJetProbeMin_dPt0dPtm; (L1Jet pt BX=0)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=-1)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]", 30, -0.1, 1.2, 30, -0.1, 1.2);
-  book<TH2F>("L1J_drJetProbeMin_dPt0dPtp1", "L1J_drJetProbeMin_dPt0dPtp; (L1Jet pt BX=0)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=+1)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]", 30, -0.1, 1.2, 30, -0.1, 1.2);
-  book<TH2F>("L1J_drJetProbeMin_dPt0dPtm1SUM", "L1J_drJetProbeMin_dPt0dPtmSUM; (L1Jet pt BX=0)/(#sum_{-1,0,+1} L1Jet pt BX=x) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=-1)/(#sum_{-1,0,+1} L1Jet pt BX=x) [#Delta^{min}R(probe jet, L1Jet)]", 30, -0.1, 1.2, 30, -0.1, 1.2);
+  book<TH2F>("L1J_drJetProbeMin_dPt0dPtm1", "L1J_drJetProbeMin_dPt0dPtm; (L1Jet pt BX=0)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=-1)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]", 60, -0.1, 10, 60, -0.1, 10);
+  book<TH2F>("L1J_drJetProbeMin_dPt0dPtp1", "L1J_drJetProbeMin_dPt0dPtp; (L1Jet pt BX=0)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=+1)/(probe jet pt) [#Delta^{min}R(probe jet, L1Jet)]", 60, -0.1, 10, 60, -0.1, 10);
+  book<TH2F>("L1J_drJetProbeMin_dPt0dPtm1SUM", "L1J_drJetProbeMin_dPt0dPtmSUM; (L1Jet pt BX=0)/(#sum_{-1,0,+1} L1Jet pt BX=x) [#Delta^{min}R(probe jet, L1Jet)]; (L1Jet pt BX=-1)/(#sum_{-1,0,+1} L1Jet pt BX=x) [#Delta^{min}R(probe jet, L1Jet)]", 60, -0.1, 10, 60, -0.1, 10);
+
+  book<TH2F>("L1J_drJetProbeMin_L1EtaL1Phi", "L1J_drJetProbeMin_L1EtaL1Phi; L1Jet #eta [#Delta^{min}R(probe jet, L1J)]; L1Jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 100,-5.2,5.2, 100,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_L1EtaL1Phi_bx0", "L1J_drJetProbeMin_L1EtaL1Phi_bx0; L1Jet #eta [#Delta^{min}R(probe jet, L1J)]; L1Jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 100,-5.2,5.2, 100,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_L1EtaL1Phi_bxPlus1", "L1J_drJetProbeMin_L1EtaL1Phi_bxPlus1; L1Jet #eta [#Delta^{min}R(probe jet, L1J)]; L1Jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 100,-5.2,5.2, 100,-3.14,3.14);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_L1EtaL1Phi_bxMinus1", "L1J_drJetProbeMin_L1EtaL1Phi_bxMinus1; L1Jet #eta [#Delta^{min}R(probe jet, L1J)]; L1Jet #phi [#Delta^{min}R(probe jet, L1J)]; Counts", 100,-5.2,5.2, 100,-3.14,3.14);//closest seed to jetProbe
+
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1Phi", "L1J_drJetProbeMin_diffL1EtaL1Phi; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet #phi - probe jet #phi) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,25,-0.5,0.5);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1Phi_bx0", "L1J_drJetProbeMin_diffL1EtaL1Phi_bx0; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet #phi - probe jet #phi) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,25,-0.5,0.5);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1Phi_bxPlus1", "L1J_drJetProbeMin_diffL1EtaL1Phi_bxPlus1; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet #phi - probe jet #phi) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,25,-0.5,0.5);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1Phi_bxMinus1", "L1J_drJetProbeMin_diffL1EtaL1Phi_bxMinus1; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet #phi - probe jet #phi) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,25,-0.5,0.5);//closest seed to jetProbe
+
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt", "L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet pt/Probe jet pt) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,50,-0.1,10.);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bx0", "L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bx0; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet pt/Probe jet pt) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,50,-0.1,10.);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxPlus1", "L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxPlus1; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet pt/Probe jet pt) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,50,-0.1,10.);//closest seed to jetProbe
+  book<TH2F>("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxMinus1", "L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxMinus1; (L1Jet #eta - probe jet #eta) [#Delta^{min}R(probe jet, L1J)]; (L1Jet pt/Probe jet pt) [#Delta^{min}R(probe jet, L1J)]; Counts", 25,-0.5,0.5,50,-0.1,10.);//closest seed to jetProbe
+
 }
 
 
@@ -498,11 +524,16 @@ void TriggerStudiesDijetHists::fill(const Event & event){
     hist("L1J_drJetProbeMin_neuHADfracProbe")->Fill(jet_probe.neutralHadronEnergyFraction(), weight);
     hist("L1J_drJetProbeMin_chHADfracProbe")->Fill(jet_probe.chargedHadronEnergyFraction(), weight);
     hist("L1J_drJetProbeMin_dR")->Fill(uhh2::deltaR(L1J,jet_probe), weight);
+    hist("L1J_drJetProbeMin_NPV")->Fill(event.pvs->size(), weight);
     ((TH2F*)hist("L1J_drJetProbeMin_ProbeEtaProbePhi"))->Fill(jet_probe.eta(),jet_probe.phi(),weight);
+    ((TH2F*)hist("L1J_drJetProbeMin_L1EtaL1Phi"))->Fill(L1J.eta(),L1J.phi(),weight);
+    ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1Phi"))->Fill(L1J.eta()-jet_probe.eta(),L1J.phi()-jet_probe.phi(),weight);
+    ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt"))->Fill(L1J.eta()-jet_probe.eta(),L1J.pt()/jet_probe.pt(),weight); 
     hist("L1J_drJetProbeMin_Ptave")->Fill(0.5*(jet_probe.pt()+jet_barrel.pt()), weight);
     hist("L1J_drJetProbeMin_EtaProbe")->Fill(jet_probe.eta(), weight);
     hist("L1J_drJetProbeMin_Pt")->Fill(L1J.pt(), weight);
     hist("L1J_drJetProbeMin_PtProbe")->Fill(jet_probe.pt(), weight);
+
     //    cout<<"l1jBX0_jetProbe_close = "<<l1jBX0_jetProbe_close<<" l1jBXm1_jetProbe_close = "<<l1jBXm1_jetProbe_close<<endl;
 
     L1Jet L1J_bx0, L1J_bxp1, L1J_bxm1;
@@ -567,11 +598,7 @@ void TriggerStudiesDijetHists::fill(const Event & event){
 	}
       }                                                                                                                               
     }// L1Jet BX=-1, BX=0
-
-
-
               
-
     if(bx == -1){
       hist("L1J_drJetProbeMin_PtProbe_bxMinus1")->Fill(jet_probe.pt(), weight);
       hist("L1J_drJetProbeMin_Pt_bxMinus1")->Fill(L1J.pt(), weight);
@@ -586,7 +613,11 @@ void TriggerStudiesDijetHists::fill(const Event & event){
       hist("L1J_drJetProbeMin_chEMfracProbe_bxMinus1")->Fill(jet_probe.chargedEmEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_neuHADfracProbe_bxMinus1")->Fill(jet_probe.neutralHadronEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_chHADfracProbe_bxMinus1")->Fill(jet_probe.chargedHadronEnergyFraction(), weight);
+      hist("L1J_drJetProbeMin_NPV_bxMinus1")->Fill(event.pvs->size(), weight);
       ((TH2F*)hist("L1J_drJetProbeMin_ProbeEtaProbePhi_bxMinus1"))->Fill(jet_probe.eta(),jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_L1EtaL1Phi_bxMinus1"))->Fill(L1J.eta(),L1J.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1Phi_bxMinus1"))->Fill(L1J.eta()-jet_probe.eta(),L1J.phi()-jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxMinus1"))->Fill(L1J.eta()-jet_probe.eta(),L1J.pt()/jet_probe.pt(),weight); 
     }
     if(bx == +1){
       hist("L1J_drJetProbeMin_PtProbe_bxPlus1")->Fill(jet_probe.pt(), weight);
@@ -602,7 +633,11 @@ void TriggerStudiesDijetHists::fill(const Event & event){
       hist("L1J_drJetProbeMin_chEMfracProbe_bxPlus1")->Fill(jet_probe.chargedEmEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_neuHADfracProbe_bxPlus1")->Fill(jet_probe.neutralHadronEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_chHADfracProbe_bxPlus1")->Fill(jet_probe.chargedHadronEnergyFraction(), weight);
+      hist("L1J_drJetProbeMin_NPV_bxPlus1")->Fill(event.pvs->size(), weight);
       ((TH2F*)hist("L1J_drJetProbeMin_ProbeEtaProbePhi_bxPlus1"))->Fill(jet_probe.eta(),jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_L1EtaL1Phi_bxPlus1"))->Fill(L1J.eta(),L1J.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1Phi_bxPlus1"))->Fill(L1J.eta()-jet_probe.eta(),L1J.phi()-jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bxPlus1"))->Fill(L1J.eta()-jet_probe.eta(),L1J.pt()/jet_probe.pt(),weight); 
     }
     if(bx == 0){
       hist("L1J_drJetProbeMin_PtProbe_bx0")->Fill(jet_probe.pt(), weight);
@@ -618,7 +653,11 @@ void TriggerStudiesDijetHists::fill(const Event & event){
       hist("L1J_drJetProbeMin_chEMfracProbe_bx0")->Fill(jet_probe.chargedEmEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_neuHADfracProbe_bx0")->Fill(jet_probe.neutralHadronEnergyFraction(), weight);
       hist("L1J_drJetProbeMin_chHADfracProbe_bx0")->Fill(jet_probe.chargedHadronEnergyFraction(), weight);
+      hist("L1J_drJetProbeMin_NPV_bx0")->Fill(event.pvs->size(), weight);
       ((TH2F*)hist("L1J_drJetProbeMin_ProbeEtaProbePhi_bx0"))->Fill(jet_probe.eta(),jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_L1EtaL1Phi_bx0"))->Fill(L1J.eta(),L1J.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1Phi_bx0"))->Fill(L1J.eta()-jet_probe.eta(),L1J.phi()-jet_probe.phi(),weight);
+      ((TH2F*)hist("L1J_drJetProbeMin_diffL1EtaL1PtoverProbePt_bx0"))->Fill(L1J.eta()-jet_probe.eta(),L1J.pt()/jet_probe.pt(),weight); 
     }
   }
 

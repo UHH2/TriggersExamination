@@ -10,18 +10,24 @@
 <!--<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_tmpSmall.xml"> -->
 <!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_tmp.xml"> -->
 <!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_DUST.xml"> -->
-<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_DUST.xml"> 
+<!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_DUST.xml"> 
 <!ENTITY DATA_RunE_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017E_withL1seeds_withL1prescales_DUST.xml"> 
 <!ENTITY DATA_RunD_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017D_withL1seeds_withL1prescales_DUST.xml"> 
 <!ENTITY DATA_RunC_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017C_withL1seeds_withL1prescales_DUST.xml"> 
-<!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017B_withL1seeds_withL1prescales_DUST.xml"> 
-<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy_JetHT2017F_UnprefireableFilterOFF_SingleJetTriggers/">
+<!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017B_withL1seeds_withL1prescales_DUST.xml"> -->
+<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunE_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017E_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunD_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017D_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunC_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017C_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017B_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+
+<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017F_UnprefireableFilterOFF_SingleJetTriggers_addFwd_patJetsAK4PFCHS_addMultMatch_2/">
 
 ]>
 
 <!--
 <ConfigParse NEventsBreak="0" FileSplit="3" AutoResubmit="5"/>
-<ConfigSGE RAM ="4" DISK ="3" Mail="anastasia.karavdina@desy.de" Notification="as" Workdir="workdir_PreFireStudy_UnprefireableFilterOFF_CONDOR_SingleJetTriggers"/>
+<ConfigSGE RAM ="4" DISK ="3" Mail="anastasia.karavdina@desy.de" Notification="as" Workdir="workdir_PreFireStudy_UnprefireableFilterOFF_CONDOR_SingleJetTriggers_addMultMatch_2"/>
 -->
 
 <!-- OutputLevel controls which messages are printed; set to VERBOSE or DEBUG for more verbosity, to WARNING or ERROR for less -->
@@ -36,7 +42,7 @@
           <InputTree Name="AnalysisTree" /> 
           <OutputTree Name="AnalysisTree" />
         </InputData>
-
+<!--
         <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017E" Cacheable="&CACHEABLE;">
 	  &DATA_RunE_AK4CHS;
           <InputTree Name="AnalysisTree" /> 
@@ -58,7 +64,7 @@
           <OutputTree Name="AnalysisTree" />
         </InputData>
 
-
+-->
             
         <UserConfig>
             <!-- define which collections to read from the input. Only specify what you need to save I/O time -->
@@ -66,7 +72,8 @@
             <Item Name="ElectronCollection" Value="slimmedElectronsUSER" />
             <Item Name="MuonCollection" Value="slimmedMuonsUSER" /> 
 <!--            <Item Name="TauCollection" Value="slimmedTaus" /> -->
-            <Item Name="JetCollection" Value="slimmedJets" />
+<!--            <Item Name="JetCollection" Value="slimmedJets" /> -->
+            <Item Name="JetCollection" Value="patJetsAK4PFCHS" />
             <Item Name="GenJetCollection" Value="slimmedGenJets" />
             <Item Name="METName" Value="slimmedMETs" />
             <Item Name="L1EGseedsCollection" Value="L1EGamma_seeds"/>
@@ -121,17 +128,19 @@
 	    <Item Name="trigger400" Value="HLT_PFJet400_v*"/>
 	    <Item Name="trigger450" Value="HLT_PFJet450_v*"/>     
 	    <Item Name="trigger500" Value="HLT_PFJet500_v*"/>
-<!--
-	    <Item Name="trigger40" Value="HLT_DiPFJetAve40_v*"/>
-	    <Item Name="trigger60" Value="HLT_DiPFJetAve60_v*"/>
-	    <Item Name="trigger80" Value="HLT_DiPFJetAve80_v*"/>
-	    <Item Name="trigger140" Value="HLT_DiPFJetAve140_v*"/>
-	    <Item Name="trigger200" Value="HLT_DiPFJetAve200_v*"/>
-	    <Item Name="trigger260" Value="HLT_DiPFJetAve260_v*"/>
-	    <Item Name="trigger320" Value="HLT_DiPFJetAve320_v*"/>
-	    <Item Name="trigger400" Value="HLT_DiPFJetAve400_v*"/>
-	    <Item Name="trigger500" Value="HLT_DiPFJetAve500_v*"/>
--->	    
+	    <Item Name="Trigger_FWD" Value="True"/>
+	    <Item Name="trigger40_fwd" Value="HLT_PFJetFwd40_v*"/>
+	    <Item Name="trigger60_fwd" Value="HLT_PFJetFwd60_v*"/>
+	    <Item Name="trigger80_fwd" Value="HLT_PFJetFwd80_v*"/>
+	    <Item Name="trigger140_fwd" Value="HLT_PFJetFwd140_v*"/>
+	    <Item Name="trigger200_fwd" Value="HLT_PFJetFwd200_v*"/>
+	    <Item Name="trigger260_fwd" Value="HLT_PFJetFwd260_v*"/>
+	    <Item Name="trigger320_fwd" Value="HLT_PFJetFwd320_v*"/>      
+	    <Item Name="trigger400_fwd" Value="HLT_PFJetFwd400_v*"/>
+	    <Item Name="trigger450_fwd" Value="HLT_PFJetFwd450_v*"/>
+	    <Item Name="trigger500_fwd" Value="HLT_PFJetFwd500_v*"/>
+
+
 	    <Item Name="apply_unprefireable_filter" Value="False"/> 
 
 

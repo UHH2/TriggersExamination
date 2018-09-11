@@ -9,11 +9,13 @@
 
 <!--<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_tmpSmall.xml"> -->
 <!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_DUST.xml"> -->
-<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_DUST.xml">
+<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_withLowPtJets.xml">
 
-<!ENTITY DATA_RunD_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017D_withL1seeds_withL1prescales_DUST.xml">
+<!ENTITY DATA_RunD_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017D_withL1seeds_withL1prescales_withLowPtJets.xml">
 
-<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy_JetHT2017F_UnprefireableFilterOFF_triggerThresholds_wL1Prescales_wHLTandL1matching_2DetaphiCleaning_wL1min_rebin_ptbins_addR0dRm1_adddPt0dPtm1/">
+<!ENTITY DATA_RunE_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017E_withL1seeds_withL1prescales_withLowPtJets.xml">
+
+<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017F_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch/">
 
 ]>
 
@@ -29,7 +31,7 @@
 
    <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="&OUTdir;/" PostFix="" TargetLumi="1" >
    <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
-        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017F" Cacheable="&CACHEABLE;">
+       <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017F" Cacheable="&CACHEABLE;">
 	  &DATA_RunF_AK4CHS;
           <InputTree Name="AnalysisTree" /> 
           <OutputTree Name="AnalysisTree" />
@@ -37,6 +39,12 @@
 
         <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017D" Cacheable="&CACHEABLE;">
 	  &DATA_RunD_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>            
+
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017E" Cacheable="&CACHEABLE;">
+	  &DATA_RunE_AK4CHS;
           <InputTree Name="AnalysisTree" /> 
           <OutputTree Name="AnalysisTree" />
         </InputData>            
@@ -50,7 +58,8 @@
             <Item Name="ElectronCollection" Value="slimmedElectronsUSER" />
             <Item Name="MuonCollection" Value="slimmedMuonsUSER" /> 
 <!--            <Item Name="TauCollection" Value="slimmedTaus" /> -->
-            <Item Name="JetCollection" Value="slimmedJets" />
+<!--            <Item Name="JetCollection" Value="slimmedJets" /> -->
+            <Item Name="JetCollection" Value="patJetsAK4PFCHS" />
             <Item Name="GenJetCollection" Value="slimmedGenJets" />
             <Item Name="METName" Value="slimmedMETs" />
             <Item Name="L1EGseedsCollection" Value="L1EGamma_seeds"/>
@@ -103,7 +112,7 @@
 	    <Item Name="trigger320" Value="HLT_DiPFJetAve320_v*"/>
 	    <Item Name="trigger400" Value="HLT_DiPFJetAve400_v*"/>
 	    <Item Name="trigger500" Value="HLT_DiPFJetAve500_v*"/>
-	    
+	    <Item Name="Trigger_FWD" Value="True"/>
 	    <Item Name="trigger60_HFJEC" Value="HLT_DiPFJetAve60_HFJEC_v*"/>
 	    <Item Name="trigger80_HFJEC" Value="HLT_DiPFJetAve80_HFJEC_v*"/>
 	    <Item Name="trigger100_HFJEC" Value="HLT_DiPFJetAve100_HFJEC_v*"/>

@@ -12,7 +12,8 @@
 
 #include "UHH2/TriggersExamination/include/TriggerStudiesSelections.h"
 #include "UHH2/TriggersExamination/include/TriggerStudiesHists.h"
-#include "UHH2/TriggersExamination/include/TriggerStudiesDijetHists.h"
+#include "UHH2/TriggersExamination/include/TriggerStudiesDijetReducedHists.h"
+#include "UHH2/TriggersExamination/include/TriggerStudiesMultipleMatchingHist.h"
 #include "UHH2/TriggersExamination/include/TriggerStudiesHLTmatchL1Hists.h"
 
 using namespace std;
@@ -53,16 +54,15 @@ private:
   std::unique_ptr<uhh2::Selection> trigger400_sel;
   std::unique_ptr<uhh2::Selection> trigger500_sel;
 
-
-  // std::unique_ptr<uhh2::Selection> trigger40_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger60_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger80_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger140_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger200_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger260_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger320_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger400_HFJEC_sel;
-  // std::unique_ptr<uhh2::Selection> trigger500_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger40_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger60_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger80_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger140_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger200_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger260_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger320_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger400_HFJEC_sel;
+  std::unique_ptr<uhh2::Selection> trigger500_HFJEC_sel;
 
   std::unique_ptr<uhh2::Selection> L1GT_BX_minus_1_sel;
   std::unique_ptr<uhh2::Selection> L1GT_BX_plus_1_sel;
@@ -80,6 +80,9 @@ private:
   //  std::unique_ptr<Hists> h_trgHF60, h_trgHF80,h_trgHF100, h_trgHF160,h_trgHF220, h_trgHF300;   
   std::unique_ptr<Hists> h_trg40_L2Res, h_trg60_L2Res, h_trg80_L2Res, h_trg140_L2Res, h_trg200_L2Res,h_trg260_L2Res,h_trg320_L2Res,h_trg400_L2Res,h_trg500_L2Res;
   std::unique_ptr<Hists> h_trgHF40_L2Res, h_trgHF60_L2Res, h_trgHF80_L2Res, h_trgHF140_L2Res, h_trgHF200_L2Res,h_trgHF260_L2Res,h_trgHF320_L2Res,h_trgHF400_L2Res,h_trgHF500_L2Res;
+  std::unique_ptr<Hists> h_trg40_MultMatch, h_trg60_MultMatch, h_trg80_MultMatch, h_trg140_MultMatch, h_trg200_MultMatch,h_trg260_MultMatch,h_trg320_MultMatch,h_trg400_MultMatch,h_trg500_MultMatch;
+  std::unique_ptr<Hists> h_trgHF40_MultMatch, h_trgHF60_MultMatch, h_trgHF80_MultMatch, h_trgHF140_MultMatch, h_trgHF200_MultMatch,h_trgHF260_MultMatch,h_trgHF320_MultMatch,h_trgHF400_MultMatch,h_trgHF500_MultMatch;
+
   //  std::unique_ptr<Hists> h_trgHF60_L2Res, h_trgHF80_L2Res,h_trgHF100_L2Res, h_trgHF160_L2Res,h_trgHF220_L2Res, h_trgHF300_L2Res;   
 
 
@@ -91,24 +94,34 @@ private:
   std::unique_ptr<Hists> h_trigger_BX0_EC2, h_trigger_L2Res_BX0_EC2, h_trigger_BXm1_EC2, h_trigger_L2Res_BXm1_EC2, h_trigger_BXp1_EC2, h_trigger_L2Res_BXp1_EC2;
   std::unique_ptr<Hists> h_trigger_BX0_HF, h_trigger_L2Res_BX0_HF, h_trigger_BXm1_HF, h_trigger_L2Res_BXm1_HF, h_trigger_BXp1_HF, h_trigger_L2Res_BXp1_HF;
 
-  // std::unique_ptr<Hists> h_trg40_BB, h_trg60_BB, h_trg80_BB, h_trg140_BB, h_trg200_BB,h_trg260_BB,h_trg320_BB,h_trg400_BB,h_trg500_BB;
-  // std::unique_ptr<Hists> h_trgHF60_BB, h_trgHF80_BB,h_trgHF100_BB, h_trgHF160_BB,h_trgHF220_BB, h_trgHF300_BB;   
+
 
   std::unique_ptr<Hists> h_trg40_L2Res_BB, h_trg60_L2Res_BB, h_trg80_L2Res_BB, h_trg140_L2Res_BB, h_trg200_L2Res_BB,h_trg260_L2Res_BB,h_trg320_L2Res_BB,h_trg400_L2Res_BB,h_trg500_L2Res_BB;
   std::unique_ptr<Hists> h_trgHF40_L2Res_BB, h_trgHF60_L2Res_BB, h_trgHF80_L2Res_BB, h_trgHF140_L2Res_BB, h_trgHF200_L2Res_BB,h_trgHF260_L2Res_BB,h_trgHF320_L2Res_BB,h_trgHF400_L2Res_BB,h_trgHF500_L2Res_BB;
-  //  std::unique_ptr<Hists> h_trgHF60_L2Res_BB, h_trgHF80_L2Res_BB,h_trgHF100_L2Res_BB, h_trgHF160_L2Res_BB,h_trgHF220_L2Res_BB, h_trgHF300_L2Res_BB;   
 
   std::unique_ptr<Hists> h_trg40_L2Res_EC1, h_trg60_L2Res_EC1, h_trg80_L2Res_EC1, h_trg140_L2Res_EC1, h_trg200_L2Res_EC1,h_trg260_L2Res_EC1,h_trg320_L2Res_EC1,h_trg400_L2Res_EC1,h_trg500_L2Res_EC1;
   std::unique_ptr<Hists> h_trgHF40_L2Res_EC1, h_trgHF60_L2Res_EC1, h_trgHF80_L2Res_EC1, h_trgHF140_L2Res_EC1, h_trgHF200_L2Res_EC1,h_trgHF260_L2Res_EC1,h_trgHF320_L2Res_EC1,h_trgHF400_L2Res_EC1,h_trgHF500_L2Res_EC1;
-  //  std::unique_ptr<Hists> h_trgHF60_L2Res_EC1, h_trgHF80_L2Res_EC1,h_trgHF100_L2Res_EC1, h_trgHF160_L2Res_EC1,h_trgHF220_L2Res_EC1, h_trgHF300_L2Res_EC1;   
 
   std::unique_ptr<Hists> h_trg40_L2Res_EC2, h_trg60_L2Res_EC2, h_trg80_L2Res_EC2, h_trg140_L2Res_EC2, h_trg200_L2Res_EC2,h_trg260_L2Res_EC2,h_trg320_L2Res_EC2,h_trg400_L2Res_EC2,h_trg500_L2Res_EC2;
   std::unique_ptr<Hists> h_trgHF40_L2Res_EC2, h_trgHF60_L2Res_EC2, h_trgHF80_L2Res_EC2, h_trgHF140_L2Res_EC2, h_trgHF200_L2Res_EC2,h_trgHF260_L2Res_EC2,h_trgHF320_L2Res_EC2,h_trgHF400_L2Res_EC2,h_trgHF500_L2Res_EC2;
-  //  std::unique_ptr<Hists> h_trgHF60_L2Res_EC2, h_trgHF80_L2Res_EC2,h_trgHF100_L2Res_EC2, h_trgHF160_L2Res_EC2,h_trgHF220_L2Res_EC2, h_trgHF300_L2Res_EC2;   
 
   std::unique_ptr<Hists> h_trg40_L2Res_HF, h_trg60_L2Res_HF, h_trg80_L2Res_HF, h_trg140_L2Res_HF, h_trg200_L2Res_HF,h_trg260_L2Res_HF,h_trg320_L2Res_HF,h_trg400_L2Res_HF,h_trg500_L2Res_HF;
   std::unique_ptr<Hists> h_trgHF40_L2Res_HF, h_trgHF60_L2Res_HF, h_trgHF80_L2Res_HF, h_trgHF140_L2Res_HF, h_trgHF200_L2Res_HF,h_trgHF260_L2Res_HF,h_trgHF320_L2Res_HF,h_trgHF400_L2Res_HF,h_trgHF500_L2Res_HF;
-  //  std::unique_ptr<Hists> h_trgHF60_L2Res_HF, h_trgHF80_L2Res_HF,h_trgHF100_L2Res_HF, h_trgHF160_L2Res_HF,h_trgHF220_L2Res_HF, h_trgHF300_L2Res_HF;   
+
+
+  std::unique_ptr<Hists> h_trg40_MultMatch_BB, h_trg60_MultMatch_BB, h_trg80_MultMatch_BB, h_trg140_MultMatch_BB, h_trg200_MultMatch_BB,h_trg260_MultMatch_BB,h_trg320_MultMatch_BB,h_trg400_MultMatch_BB,h_trg500_MultMatch_BB;
+  std::unique_ptr<Hists> h_trgHF40_MultMatch_BB, h_trgHF60_MultMatch_BB, h_trgHF80_MultMatch_BB, h_trgHF140_MultMatch_BB, h_trgHF200_MultMatch_BB,h_trgHF260_MultMatch_BB,h_trgHF320_MultMatch_BB,h_trgHF400_MultMatch_BB,h_trgHF500_MultMatch_BB;
+
+  std::unique_ptr<Hists> h_trg40_MultMatch_EC1, h_trg60_MultMatch_EC1, h_trg80_MultMatch_EC1, h_trg140_MultMatch_EC1, h_trg200_MultMatch_EC1,h_trg260_MultMatch_EC1,h_trg320_MultMatch_EC1,h_trg400_MultMatch_EC1,h_trg500_MultMatch_EC1;
+  std::unique_ptr<Hists> h_trgHF40_MultMatch_EC1, h_trgHF60_MultMatch_EC1, h_trgHF80_MultMatch_EC1, h_trgHF140_MultMatch_EC1, h_trgHF200_MultMatch_EC1,h_trgHF260_MultMatch_EC1,h_trgHF320_MultMatch_EC1,h_trgHF400_MultMatch_EC1,h_trgHF500_MultMatch_EC1;
+
+  std::unique_ptr<Hists> h_trg40_MultMatch_EC2, h_trg60_MultMatch_EC2, h_trg80_MultMatch_EC2, h_trg140_MultMatch_EC2, h_trg200_MultMatch_EC2,h_trg260_MultMatch_EC2,h_trg320_MultMatch_EC2,h_trg400_MultMatch_EC2,h_trg500_MultMatch_EC2;
+  std::unique_ptr<Hists> h_trgHF40_MultMatch_EC2, h_trgHF60_MultMatch_EC2, h_trgHF80_MultMatch_EC2, h_trgHF140_MultMatch_EC2, h_trgHF200_MultMatch_EC2,h_trgHF260_MultMatch_EC2,h_trgHF320_MultMatch_EC2,h_trgHF400_MultMatch_EC2,h_trgHF500_MultMatch_EC2;
+
+  std::unique_ptr<Hists> h_trg40_MultMatch_HF, h_trg60_MultMatch_HF, h_trg80_MultMatch_HF, h_trg140_MultMatch_HF, h_trg200_MultMatch_HF,h_trg260_MultMatch_HF,h_trg320_MultMatch_HF,h_trg400_MultMatch_HF,h_trg500_MultMatch_HF;
+  std::unique_ptr<Hists> h_trgHF40_MultMatch_HF, h_trgHF60_MultMatch_HF, h_trgHF80_MultMatch_HF, h_trgHF140_MultMatch_HF, h_trgHF200_MultMatch_HF,h_trgHF260_MultMatch_HF,h_trgHF320_MultMatch_HF,h_trgHF400_MultMatch_HF,h_trgHF500_MultMatch_HF;
+
+
 
   // //  std::unique_ptr<Hists> h_trigger_HLT;
   // std::unique_ptr<TriggerStudiesHLTmatchL1Hists> h_trigger_HLT;
@@ -121,10 +134,15 @@ private:
   std::string trigger140 = "NULL"; std::string trigger200 = "NULL";  std::string trigger260 = "NULL"; 
   std::string trigger320 = "NULL";  std::string trigger400 = "NULL";  std::string trigger500 = "NULL";
 
+  std::string trigger40_fwd = "NULL"; std::string trigger60_fwd = "NULL"; std::string trigger80_fwd = "NULL"; 
+  std::string trigger140_fwd = "NULL"; std::string trigger200_fwd = "NULL";  std::string trigger260_fwd = "NULL"; 
+  std::string trigger320_fwd = "NULL";  std::string trigger400_fwd = "NULL";  std::string trigger500_fwd = "NULL";
+
+  /*
   std::string triggerHF40 = "NULL"; std::string triggerHF60 = "NULL"; std::string triggerHF80 = "NULL"; 
   std::string triggerHF140 = "NULL"; std::string triggerHF200 = "NULL";  std::string triggerHF260 = "NULL"; 
   std::string triggerHF320 = "NULL";  std::string triggerHF400 = "NULL";  std::string triggerHF500 = "NULL";
-
+  */
   bool apply_unprefireable_filter = false;
 };
 
@@ -151,6 +169,7 @@ TriggerStudiesSingleJetModule::TriggerStudiesSingleJetModule(Context & ctx){
     // TODO: configure common here, e.g. by 
     // calling common->set_*_id or common->disable_*
     common->switch_metcorrection(true);
+    common->switch_metCHS(true);
     common->set_jet_id(PtEtaCut(15.0, 5.2)); //cleaning low pt jets
     common->init(ctx);
     
@@ -162,63 +181,63 @@ TriggerStudiesSingleJetModule::TriggerStudiesSingleJetModule(Context & ctx){
     h_nocuts.reset(new TriggerStudiesHists(ctx, "NoCuts"));
     h_njet.reset(new TriggerStudiesHists(ctx, "Njet"));
     h_dijet.reset(new TriggerStudiesHists(ctx, "Dijet"));
-    h_dijet_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Dijet_L2Res"));
+    h_dijet_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Dijet_L2Res"));
     h_unprefire.reset(new TriggerStudiesHists(ctx, "Unprefire"));
-    h_unprefire_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Unprefire_L2Res"));
+    h_unprefire_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Unprefire_L2Res"));
     h_2Detaphi.reset(new TriggerStudiesHists(ctx, "2Detaphi"));
-    h_2Detaphi_L2Res.reset(new TriggerStudiesDijetHists(ctx, "2Detaphi_L2Res"));
+    h_2Detaphi_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "2Detaphi_L2Res"));
 
     h_trigger.reset(new TriggerStudiesHists(ctx, "Trigger"));
-    h_trigger_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res"));
+    h_trigger_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res"));
     // h_trigger_HLT.reset(new TriggerStudiesHLTmatchL1Hists(ctx, "Trigger_HLT"));
     // h_trigger_HLT_BB.reset(new TriggerStudiesHLTmatchL1Hists(ctx, "Trigger_HLT_BB"));
     // h_trigger_HLT_EC1.reset(new TriggerStudiesHLTmatchL1Hists(ctx, "Trigger_HLT_EC1"));
     // h_trigger_HLT_EC2.reset(new TriggerStudiesHLTmatchL1Hists(ctx, "Trigger_HLT_EC2"));
     // h_trigger_HLT_HF.reset(new TriggerStudiesHLTmatchL1Hists(ctx, "Trigger_HLT_HF"));
     h_trigger_BB.reset(new TriggerStudiesHists(ctx, "Trigger_BB"));
-    h_trigger_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_BB"));
+    h_trigger_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_BB"));
     h_trigger_EC1.reset(new TriggerStudiesHists(ctx, "Trigger_EC1"));
-    h_trigger_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_EC1"));
+    h_trigger_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_EC1"));
     h_trigger_EC2.reset(new TriggerStudiesHists(ctx, "Trigger_EC2"));
-    h_trigger_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_EC2"));
+    h_trigger_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_EC2"));
     h_trigger_HF.reset(new TriggerStudiesHists(ctx, "Trigger_HF"));
-    h_trigger_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_HF"));
+    h_trigger_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_HF"));
 
 
     h_trigger_BX0.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBX0"));
-    h_trigger_L2Res_BX0.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBX0"));
+    h_trigger_L2Res_BX0.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBX0"));
     h_trigger_BXm1.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXm1"));
-    h_trigger_L2Res_BXm1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXm1"));
+    h_trigger_L2Res_BXm1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXm1"));
     h_trigger_BXp1.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXp1"));
-    h_trigger_L2Res_BXp1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXp1"));
+    h_trigger_L2Res_BXp1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXp1"));
 
     h_trigger_BX0_BB.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBX0_BB"));
-    h_trigger_L2Res_BX0_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBX0_BB"));
+    h_trigger_L2Res_BX0_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBX0_BB"));
     h_trigger_BXm1_BB.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXm1_BB"));
-    h_trigger_L2Res_BXm1_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXm1_BB"));
+    h_trigger_L2Res_BXm1_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXm1_BB"));
     h_trigger_BXp1_BB.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXp1_BB"));
-    h_trigger_L2Res_BXp1_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXp1_BB"));
+    h_trigger_L2Res_BXp1_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXp1_BB"));
 
     h_trigger_BX0_EC1.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBX0_EC1"));
-    h_trigger_L2Res_BX0_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBX0_EC1"));
+    h_trigger_L2Res_BX0_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBX0_EC1"));
     h_trigger_BXm1_EC1.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXm1_EC1"));
-    h_trigger_L2Res_BXm1_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXm1_EC1"));
+    h_trigger_L2Res_BXm1_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXm1_EC1"));
     h_trigger_BXp1_EC1.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXp1_EC1"));
-    h_trigger_L2Res_BXp1_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXp1_EC1"));
+    h_trigger_L2Res_BXp1_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXp1_EC1"));
 
     h_trigger_BX0_EC2.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBX0_EC2"));
-    h_trigger_L2Res_BX0_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBX0_EC2"));
+    h_trigger_L2Res_BX0_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBX0_EC2"));
     h_trigger_BXm1_EC2.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXm1_EC2"));
-    h_trigger_L2Res_BXm1_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXm1_EC2"));
+    h_trigger_L2Res_BXm1_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXm1_EC2"));
     h_trigger_BXp1_EC2.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXp1_EC2"));
-    h_trigger_L2Res_BXp1_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXp1_EC2"));
+    h_trigger_L2Res_BXp1_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXp1_EC2"));
 
     h_trigger_BX0_HF.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBX0_HF"));
-    h_trigger_L2Res_BX0_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBX0_HF"));
+    h_trigger_L2Res_BX0_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBX0_HF"));
     h_trigger_BXm1_HF.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXm1_HF"));
-    h_trigger_L2Res_BXm1_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXm1_HF"));
+    h_trigger_L2Res_BXm1_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXm1_HF"));
     h_trigger_BXp1_HF.reset(new TriggerStudiesHists(ctx, "Trigger_L1GTBXp1_HF"));
-    h_trigger_L2Res_BXp1_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger_L2Res_L1GTBXp1_HF"));
+    h_trigger_L2Res_BXp1_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger_L2Res_L1GTBXp1_HF"));
 
     //4a. Set up lumi JSON filter
     lumi_sel.reset(new LumiSelection(ctx));
@@ -270,109 +289,214 @@ TriggerStudiesSingleJetModule::TriggerStudiesSingleJetModule(Context & ctx){
     // h_trgHF220.reset(new TriggerStudiesHists(ctx, "Trigger220HF"));
     // h_trgHF300.reset(new TriggerStudiesHists(ctx, "Trigger300HF"));
 
-    h_trg40_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger40_L2Res"));
-    h_trg60_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger60_L2Res"));
-    h_trg80_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger80_L2Res"));
-    h_trg140_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger140_L2Res"));
-    h_trg200_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger200_L2Res"));
-    h_trg260_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger260_L2Res"));
-    h_trg320_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger320_L2Res"));
-    h_trg400_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger400_L2Res"));
-    h_trg500_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger500_L2Res"));
+    h_trg40_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40_L2Res"));
+    h_trg60_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60_L2Res"));
+    h_trg80_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80_L2Res"));
+    h_trg140_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140_L2Res"));
+    h_trg200_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200_L2Res"));
+    h_trg260_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260_L2Res"));
+    h_trg320_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320_L2Res"));
+    h_trg400_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400_L2Res"));
+    h_trg500_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500_L2Res"));
 
-    h_trgHF40_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger40HF_L2Res"));
-    h_trgHF60_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger60HF_L2Res"));
-    h_trgHF80_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger80HF_L2Res"));
-    h_trgHF140_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger140HF_L2Res"));
-    h_trgHF200_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger200HF_L2Res"));
-    h_trgHF260_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger260HF_L2Res"));
-    h_trgHF320_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger320HF_L2Res"));
-    h_trgHF400_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger400HF_L2Res"));
-    h_trgHF500_L2Res.reset(new TriggerStudiesDijetHists(ctx, "Trigger500HF_L2Res"));
-
-
-    h_trg40_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger40_L2Res_BB"));
-    h_trg60_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger60_L2Res_BB"));
-    h_trg80_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger80_L2Res_BB"));
-    h_trg140_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger140_L2Res_BB"));
-    h_trg200_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger200_L2Res_BB"));
-    h_trg260_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger260_L2Res_BB"));
-    h_trg320_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger320_L2Res_BB"));
-    h_trg400_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger400_L2Res_BB"));
-    h_trg500_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger500_L2Res_BB"));
-
-    h_trgHF40_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger40HF_L2Res_BB"));
-    h_trgHF60_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger60HF_L2Res_BB"));
-    h_trgHF80_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger80HF_L2Res_BB"));
-    h_trgHF140_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger140HF_L2Res_BB"));
-    h_trgHF200_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger200HF_L2Res_BB"));
-    h_trgHF260_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger260HF_L2Res_BB"));
-    h_trgHF320_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger320HF_L2Res_BB"));
-    h_trgHF400_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger400HF_L2Res_BB"));
-    h_trgHF500_L2Res_BB.reset(new TriggerStudiesDijetHists(ctx, "Trigger500HF_L2Res_BB"));
+    h_trgHF40_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40HF_L2Res"));
+    h_trgHF60_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60HF_L2Res"));
+    h_trgHF80_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80HF_L2Res"));
+    h_trgHF140_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140HF_L2Res"));
+    h_trgHF200_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200HF_L2Res"));
+    h_trgHF260_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260HF_L2Res"));
+    h_trgHF320_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320HF_L2Res"));
+    h_trgHF400_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400HF_L2Res"));
+    h_trgHF500_L2Res.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500HF_L2Res"));
 
 
-    h_trg40_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger40_L2Res_EC1"));
-    h_trg60_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger60_L2Res_EC1"));
-    h_trg80_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger80_L2Res_EC1"));
-    h_trg140_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger140_L2Res_EC1"));
-    h_trg200_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger200_L2Res_EC1"));
-    h_trg260_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger260_L2Res_EC1"));
-    h_trg320_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger320_L2Res_EC1"));
-    h_trg400_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger400_L2Res_EC1"));
-    h_trg500_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger500_L2Res_EC1"));
+    h_trg40_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40_L2Res_BB"));
+    h_trg60_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60_L2Res_BB"));
+    h_trg80_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80_L2Res_BB"));
+    h_trg140_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140_L2Res_BB"));
+    h_trg200_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200_L2Res_BB"));
+    h_trg260_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260_L2Res_BB"));
+    h_trg320_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320_L2Res_BB"));
+    h_trg400_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400_L2Res_BB"));
+    h_trg500_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500_L2Res_BB"));
 
-    h_trgHF40_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger40HF_L2Res_EC1"));
-    h_trgHF60_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger60HF_L2Res_EC1"));
-    h_trgHF80_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger80HF_L2Res_EC1"));
-    h_trgHF140_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger140HF_L2Res_EC1"));
-    h_trgHF200_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger200HF_L2Res_EC1"));
-    h_trgHF260_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger260HF_L2Res_EC1"));
-    h_trgHF320_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger320HF_L2Res_EC1"));
-    h_trgHF400_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger400HF_L2Res_EC1"));
-    h_trgHF500_L2Res_EC1.reset(new TriggerStudiesDijetHists(ctx, "Trigger500HF_L2Res_EC1"));
-
-
-    h_trg40_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger40_L2Res_EC2"));
-    h_trg60_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger60_L2Res_EC2"));
-    h_trg80_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger80_L2Res_EC2"));
-    h_trg140_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger140_L2Res_EC2"));
-    h_trg200_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger200_L2Res_EC2"));
-    h_trg260_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger260_L2Res_EC2"));
-    h_trg320_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger320_L2Res_EC2"));
-    h_trg400_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger400_L2Res_EC2"));
-    h_trg500_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger500_L2Res_EC2"));
-
-    h_trgHF40_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger40HF_L2Res_EC2"));
-    h_trgHF60_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger60HF_L2Res_EC2"));
-    h_trgHF80_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger80HF_L2Res_EC2"));
-    h_trgHF140_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger140HF_L2Res_EC2"));
-    h_trgHF200_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger200HF_L2Res_EC2"));
-    h_trgHF260_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger260HF_L2Res_EC2"));
-    h_trgHF320_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger320HF_L2Res_EC2"));
-    h_trgHF400_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger400HF_L2Res_EC2"));
-    h_trgHF500_L2Res_EC2.reset(new TriggerStudiesDijetHists(ctx, "Trigger500HF_L2Res_EC2"));
+    h_trgHF40_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40HF_L2Res_BB"));
+    h_trgHF60_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60HF_L2Res_BB"));
+    h_trgHF80_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80HF_L2Res_BB"));
+    h_trgHF140_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140HF_L2Res_BB"));
+    h_trgHF200_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200HF_L2Res_BB"));
+    h_trgHF260_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260HF_L2Res_BB"));
+    h_trgHF320_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320HF_L2Res_BB"));
+    h_trgHF400_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400HF_L2Res_BB"));
+    h_trgHF500_L2Res_BB.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500HF_L2Res_BB"));
 
 
-    h_trg40_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger40_L2Res_HF"));
-    h_trg60_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger60_L2Res_HF"));
-    h_trg80_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger80_L2Res_HF"));
-    h_trg140_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger140_L2Res_HF"));
-    h_trg200_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger200_L2Res_HF"));
-    h_trg260_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger260_L2Res_HF"));
-    h_trg320_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger320_L2Res_HF"));
-    h_trg400_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger400_L2Res_HF"));
-    h_trg500_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger500_L2Res_HF"));
+    h_trg40_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40_L2Res_EC1"));
+    h_trg60_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60_L2Res_EC1"));
+    h_trg80_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80_L2Res_EC1"));
+    h_trg140_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140_L2Res_EC1"));
+    h_trg200_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200_L2Res_EC1"));
+    h_trg260_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260_L2Res_EC1"));
+    h_trg320_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320_L2Res_EC1"));
+    h_trg400_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400_L2Res_EC1"));
+    h_trg500_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500_L2Res_EC1"));
 
-    h_trgHF40_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger40HF_L2Res_HF"));
-    h_trgHF60_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger60HF_L2Res_HF"));
-    h_trgHF80_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger80HF_L2Res_HF"));
-    h_trgHF140_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger140HF_L2Res_HF"));
-    h_trgHF200_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger200HF_L2Res_HF"));
-    h_trgHF260_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger260HF_L2Res_HF"));
-    h_trgHF320_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger320HF_L2Res_HF"));
-    h_trgHF400_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger400HF_L2Res_HF"));
-    h_trgHF500_L2Res_HF.reset(new TriggerStudiesDijetHists(ctx, "Trigger500HF_L2Res_HF"));
+    h_trgHF40_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40HF_L2Res_EC1"));
+    h_trgHF60_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60HF_L2Res_EC1"));
+    h_trgHF80_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80HF_L2Res_EC1"));
+    h_trgHF140_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140HF_L2Res_EC1"));
+    h_trgHF200_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200HF_L2Res_EC1"));
+    h_trgHF260_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260HF_L2Res_EC1"));
+    h_trgHF320_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320HF_L2Res_EC1"));
+    h_trgHF400_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400HF_L2Res_EC1"));
+    h_trgHF500_L2Res_EC1.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500HF_L2Res_EC1"));
+
+
+    h_trg40_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40_L2Res_EC2"));
+    h_trg60_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60_L2Res_EC2"));
+    h_trg80_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80_L2Res_EC2"));
+    h_trg140_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140_L2Res_EC2"));
+    h_trg200_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200_L2Res_EC2"));
+    h_trg260_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260_L2Res_EC2"));
+    h_trg320_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320_L2Res_EC2"));
+    h_trg400_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400_L2Res_EC2"));
+    h_trg500_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500_L2Res_EC2"));
+
+    h_trgHF40_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40HF_L2Res_EC2"));
+    h_trgHF60_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60HF_L2Res_EC2"));
+    h_trgHF80_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80HF_L2Res_EC2"));
+    h_trgHF140_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140HF_L2Res_EC2"));
+    h_trgHF200_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200HF_L2Res_EC2"));
+    h_trgHF260_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260HF_L2Res_EC2"));
+    h_trgHF320_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320HF_L2Res_EC2"));
+    h_trgHF400_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400HF_L2Res_EC2"));
+    h_trgHF500_L2Res_EC2.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500HF_L2Res_EC2"));
+
+
+    h_trg40_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40_L2Res_HF"));
+    h_trg60_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60_L2Res_HF"));
+    h_trg80_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80_L2Res_HF"));
+    h_trg140_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140_L2Res_HF"));
+    h_trg200_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200_L2Res_HF"));
+    h_trg260_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260_L2Res_HF"));
+    h_trg320_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320_L2Res_HF"));
+    h_trg400_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400_L2Res_HF"));
+    h_trg500_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500_L2Res_HF"));
+
+    h_trgHF40_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger40HF_L2Res_HF"));
+    h_trgHF60_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger60HF_L2Res_HF"));
+    h_trgHF80_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger80HF_L2Res_HF"));
+    h_trgHF140_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger140HF_L2Res_HF"));
+    h_trgHF200_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger200HF_L2Res_HF"));
+    h_trgHF260_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger260HF_L2Res_HF"));
+    h_trgHF320_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger320HF_L2Res_HF"));
+    h_trgHF400_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger400HF_L2Res_HF"));
+    h_trgHF500_L2Res_HF.reset(new TriggerStudiesDijetReducedHists(ctx, "Trigger500HF_L2Res_HF"));
+
+    //MultMatch
+    h_trg40_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40_MultMatch"));
+    h_trg60_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60_MultMatch"));
+    h_trg80_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80_MultMatch"));
+    h_trg140_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140_MultMatch"));
+    h_trg200_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200_MultMatch"));
+    h_trg260_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260_MultMatch"));
+    h_trg320_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320_MultMatch"));
+    h_trg400_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400_MultMatch"));
+    h_trg500_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500_MultMatch"));
+
+    h_trgHF40_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40HF_MultMatch"));
+    h_trgHF60_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60HF_MultMatch"));
+    h_trgHF80_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80HF_MultMatch"));
+    h_trgHF140_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140HF_MultMatch"));
+    h_trgHF200_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200HF_MultMatch"));
+    h_trgHF260_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260HF_MultMatch"));
+    h_trgHF320_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320HF_MultMatch"));
+    h_trgHF400_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400HF_MultMatch"));
+    h_trgHF500_MultMatch.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500HF_MultMatch"));
+
+
+    h_trg40_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40_MultMatch_BB"));
+    h_trg60_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60_MultMatch_BB"));
+    h_trg80_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80_MultMatch_BB"));
+    h_trg140_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140_MultMatch_BB"));
+    h_trg200_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200_MultMatch_BB"));
+    h_trg260_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260_MultMatch_BB"));
+    h_trg320_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320_MultMatch_BB"));
+    h_trg400_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400_MultMatch_BB"));
+    h_trg500_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500_MultMatch_BB"));
+
+    h_trgHF40_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40HF_MultMatch_BB"));
+    h_trgHF60_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60HF_MultMatch_BB"));
+    h_trgHF80_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80HF_MultMatch_BB"));
+    h_trgHF140_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140HF_MultMatch_BB"));
+    h_trgHF200_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200HF_MultMatch_BB"));
+    h_trgHF260_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260HF_MultMatch_BB"));
+    h_trgHF320_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320HF_MultMatch_BB"));
+    h_trgHF400_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400HF_MultMatch_BB"));
+    h_trgHF500_MultMatch_BB.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500HF_MultMatch_BB"));
+
+
+    h_trg40_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40_MultMatch_EC1"));
+    h_trg60_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60_MultMatch_EC1"));
+    h_trg80_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80_MultMatch_EC1"));
+    h_trg140_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140_MultMatch_EC1"));
+    h_trg200_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200_MultMatch_EC1"));
+    h_trg260_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260_MultMatch_EC1"));
+    h_trg320_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320_MultMatch_EC1"));
+    h_trg400_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400_MultMatch_EC1"));
+    h_trg500_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500_MultMatch_EC1"));
+
+    h_trgHF40_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40HF_MultMatch_EC1"));
+    h_trgHF60_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60HF_MultMatch_EC1"));
+    h_trgHF80_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80HF_MultMatch_EC1"));
+    h_trgHF140_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140HF_MultMatch_EC1"));
+    h_trgHF200_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200HF_MultMatch_EC1"));
+    h_trgHF260_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260HF_MultMatch_EC1"));
+    h_trgHF320_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320HF_MultMatch_EC1"));
+    h_trgHF400_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400HF_MultMatch_EC1"));
+    h_trgHF500_MultMatch_EC1.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500HF_MultMatch_EC1"));
+
+
+    h_trg40_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40_MultMatch_EC2"));
+    h_trg60_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60_MultMatch_EC2"));
+    h_trg80_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80_MultMatch_EC2"));
+    h_trg140_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140_MultMatch_EC2"));
+    h_trg200_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200_MultMatch_EC2"));
+    h_trg260_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260_MultMatch_EC2"));
+    h_trg320_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320_MultMatch_EC2"));
+    h_trg400_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400_MultMatch_EC2"));
+    h_trg500_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500_MultMatch_EC2"));
+
+    h_trgHF40_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40HF_MultMatch_EC2"));
+    h_trgHF60_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60HF_MultMatch_EC2"));
+    h_trgHF80_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80HF_MultMatch_EC2"));
+    h_trgHF140_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140HF_MultMatch_EC2"));
+    h_trgHF200_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200HF_MultMatch_EC2"));
+    h_trgHF260_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260HF_MultMatch_EC2"));
+    h_trgHF320_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320HF_MultMatch_EC2"));
+    h_trgHF400_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400HF_MultMatch_EC2"));
+    h_trgHF500_MultMatch_EC2.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500HF_MultMatch_EC2"));
+
+
+    h_trg40_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40_MultMatch_HF"));
+    h_trg60_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60_MultMatch_HF"));
+    h_trg80_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80_MultMatch_HF"));
+    h_trg140_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140_MultMatch_HF"));
+    h_trg200_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200_MultMatch_HF"));
+    h_trg260_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260_MultMatch_HF"));
+    h_trg320_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320_MultMatch_HF"));
+    h_trg400_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400_MultMatch_HF"));
+    h_trg500_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500_MultMatch_HF"));
+
+    h_trgHF40_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger40HF_MultMatch_HF"));
+    h_trgHF60_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger60HF_MultMatch_HF"));
+    h_trgHF80_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger80HF_MultMatch_HF"));
+    h_trgHF140_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger140HF_MultMatch_HF"));
+    h_trgHF200_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger200HF_MultMatch_HF"));
+    h_trgHF260_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger260HF_MultMatch_HF"));
+    h_trgHF320_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger320HF_MultMatch_HF"));
+    h_trgHF400_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger400HF_MultMatch_HF"));
+    h_trgHF500_MultMatch_HF.reset(new TriggerStudiesMultipleMatchingHist(ctx, "Trigger500HF_MultMatch_HF"));
 
 
     // const std::string& trigger40 = ctx.get("trigger40", "NULL");
@@ -429,6 +553,34 @@ TriggerStudiesSingleJetModule::TriggerStudiesSingleJetModule(Context & ctx){
     if(trigger500 != "NULL") 
       trigger500_sel.reset(new TriggerSelection(trigger500));
     else trigger500_sel.reset(new uhh2::AndSelection(ctx));
+
+    if(trigger40_fwd != "NULL") 
+      trigger40_HFJEC_sel.reset(new TriggerSelection(trigger40_fwd));
+    else trigger40_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger60_fwd != "NULL") 
+      trigger60_HFJEC_sel.reset(new TriggerSelection(trigger60_fwd));
+    else trigger60_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger80_fwd != "NULL") 
+      trigger80_HFJEC_sel.reset(new TriggerSelection(trigger80_fwd));
+    else trigger80_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger140_fwd != "NULL") 
+      trigger140_HFJEC_sel.reset(new TriggerSelection(trigger140_fwd));
+    else trigger140_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger200_fwd != "NULL") 
+      trigger200_HFJEC_sel.reset(new TriggerSelection(trigger200_fwd));
+    else trigger200_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger260_fwd != "NULL") 
+      trigger260_HFJEC_sel.reset(new TriggerSelection(trigger260_fwd));
+    else trigger260_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger320_fwd != "NULL") 
+      trigger320_HFJEC_sel.reset(new TriggerSelection(trigger320_fwd));
+    else trigger320_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger400_fwd != "NULL") 
+      trigger400_HFJEC_sel.reset(new TriggerSelection(trigger400_fwd));
+    else trigger400_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
+    if(trigger500_fwd != "NULL") 
+      trigger500_HFJEC_sel.reset(new TriggerSelection(trigger500_fwd));
+    else trigger500_HFJEC_sel.reset(new uhh2::AndSelection(ctx));
 
 }
 
@@ -528,28 +680,53 @@ bool TriggerStudiesSingleJetModule::process(Event & event) {
 
     // 2017 94X 17Nov2017
     // constexpr static float d_Pt_AveMC_cut   =  51;
-    //https://github.com/UHH2/BaconJets/blob/RunII_2017_94X/include/constants.h#L64
-    constexpr static float d_Pt_Ave40_cut   = 72;
-    constexpr static float d_Pt_Ave60_cut   = 95;
-    constexpr static float d_Pt_Ave80_cut   = 160;
-    constexpr static float d_Pt_Ave140_cut  = 226;
-    constexpr static float d_Pt_Ave200_cut  = 283;
-    constexpr static float d_Pt_Ave260_cut  = 344;
-    constexpr static float d_Pt_Ave320_cut  = 443;
-    constexpr static float d_Pt_Ave400_cut  = 577;
-    constexpr static float d_Pt_Ave500_cut  = 606;
+    //https://github.com/UHH2/BaconJets/blob/RunII_2017_94X/include/constants.h#L130-L139
+    constexpr static float s_Pt_Ave40_cut   =40 ;
+    constexpr static float s_Pt_Ave60_cut   =72 ;
+    constexpr static float s_Pt_Ave80_cut   =95 ;
+    constexpr static float s_Pt_Ave140_cut  =160;
+    constexpr static float s_Pt_Ave200_cut  =226;
+    constexpr static float s_Pt_Ave260_cut  =283;
+    constexpr static float s_Pt_Ave320_cut  =344;
+    constexpr static float s_Pt_Ave400_cut  =443;
+    constexpr static float s_Pt_Ave450_cut  =577;
+    constexpr static float s_Pt_Ave500_cut  =606;
 
 
     double trg_thresh[9] = {
-      d_Pt_Ave40_cut,
-      d_Pt_Ave60_cut,
-      d_Pt_Ave80_cut,
-      d_Pt_Ave140_cut,
-      d_Pt_Ave200_cut,
-      d_Pt_Ave260_cut,
-      d_Pt_Ave320_cut,
-      d_Pt_Ave400_cut,
-      d_Pt_Ave500_cut
+      s_Pt_Ave40_cut,
+      s_Pt_Ave60_cut,
+      s_Pt_Ave80_cut,
+      s_Pt_Ave140_cut,
+      s_Pt_Ave200_cut,
+      s_Pt_Ave260_cut,
+      s_Pt_Ave320_cut,
+      s_Pt_Ave400_cut,
+      s_Pt_Ave500_cut
+    };
+
+    //copy of central singlejet
+    constexpr static float s_Pt_Ave40_fwd_cut   =40 ;
+    constexpr static float s_Pt_Ave60_fwd_cut   =72 ;
+    constexpr static float s_Pt_Ave80_fwd_cut   =95 ;
+    constexpr static float s_Pt_Ave140_fwd_cut  =160;
+    constexpr static float s_Pt_Ave200_fwd_cut  =226;
+    constexpr static float s_Pt_Ave260_fwd_cut  =283;
+    constexpr static float s_Pt_Ave320_fwd_cut  =344;
+    constexpr static float s_Pt_Ave400_fwd_cut  =443;
+    constexpr static float s_Pt_Ave450_fwd_cut  =577;
+    constexpr static float s_Pt_Ave500_fwd_cut  =606;
+
+    double trg_thresh_fwd[9] = {
+      s_Pt_Ave40_fwd_cut,
+      s_Pt_Ave60_fwd_cut,
+      s_Pt_Ave80_fwd_cut,
+      s_Pt_Ave140_fwd_cut,
+      s_Pt_Ave200_fwd_cut,
+      s_Pt_Ave260_fwd_cut,
+      s_Pt_Ave320_fwd_cut,
+      s_Pt_Ave400_fwd_cut,
+      s_Pt_Ave500_fwd_cut
     };
 
     //    double trgHF_thresh[6] = {d_Pt_Ave60HF_cut,d_Pt_Ave80HF_cut,d_Pt_Ave100HF_cut,d_Pt_Ave160HF_cut,d_Pt_Ave220HF_cut,d_Pt_Ave300HF_cut};
@@ -570,15 +747,15 @@ bool TriggerStudiesSingleJetModule::process(Event & event) {
       pass_trigger500 = (trigger500_sel->passes(event) && pt_ave>trg_thresh[8]);
     }
     else{
-      pass_trigger40_HFJEC = (trigger40_sel->passes(event) && pt_ave>trg_thresh[0]   && pt_ave<trg_thresh[1]);
-      pass_trigger60_HFJEC = (trigger60_sel->passes(event) && pt_ave>trg_thresh[1]   && pt_ave<trg_thresh[2]);
-      pass_trigger80_HFJEC = (trigger80_sel->passes(event) && pt_ave>trg_thresh[2]   && pt_ave<trg_thresh[3]); 
-      pass_trigger140_HFJEC = (trigger140_sel->passes(event) && pt_ave>trg_thresh[3] && pt_ave<trg_thresh[4]); 
-      pass_trigger200_HFJEC = (trigger200_sel->passes(event) && pt_ave>trg_thresh[4] && pt_ave<trg_thresh[5]); 
-      pass_trigger260_HFJEC = (trigger260_sel->passes(event) && pt_ave>trg_thresh[5] && pt_ave<trg_thresh[6]);
-      pass_trigger320_HFJEC = (trigger320_sel->passes(event) && pt_ave>trg_thresh[6] && pt_ave<trg_thresh[7]);
-      pass_trigger400_HFJEC = (trigger400_sel->passes(event) && pt_ave>trg_thresh[7] && pt_ave<trg_thresh[8]);
-      pass_trigger500_HFJEC = (trigger500_sel->passes(event) && pt_ave>trg_thresh[8]);
+      pass_trigger40_HFJEC = (trigger40_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[0]   && pt_ave<trg_thresh_fwd[1]);
+      pass_trigger60_HFJEC = (trigger60_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[1]   && pt_ave<trg_thresh_fwd[2]);
+      pass_trigger80_HFJEC = (trigger80_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[2]   && pt_ave<trg_thresh_fwd[3]); 
+      pass_trigger140_HFJEC = (trigger140_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[3] && pt_ave<trg_thresh_fwd[4]); 
+      pass_trigger200_HFJEC = (trigger200_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[4] && pt_ave<trg_thresh_fwd[5]); 
+      pass_trigger260_HFJEC = (trigger260_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[5] && pt_ave<trg_thresh_fwd[6]);
+      pass_trigger320_HFJEC = (trigger320_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[6] && pt_ave<trg_thresh_fwd[7]);
+      pass_trigger400_HFJEC = (trigger400_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[7] && pt_ave<trg_thresh_fwd[8]);
+      pass_trigger500_HFJEC = (trigger500_HFJEC_sel->passes(event) && pt_ave>trg_thresh_fwd[8]);
 
     }
 
@@ -632,7 +809,7 @@ bool TriggerStudiesSingleJetModule::process(Event & event) {
     // cout<<" pass_trigger60_HFJEC = "<<pass_trigger60_HFJEC<<" pass_trigger80_HFJEC = "<<pass_trigger80_HFJEC<<" pass_trigger100_HFJEC = "<<pass_trigger100_HFJEC
     // 	<<" pass_trigger160_HFJEC = "<<pass_trigger160_HFJEC<<" pass_trigger220_HFJEC = "<<pass_trigger220_HFJEC<<" pass_trigger300_HFJEC = "<<pass_trigger300_HFJEC<<endl;
 
-    //6. Scale each event accounding to prescale //ToDo: take into account L1 prescales too!
+    /* //6. Scale each event accounding to prescale //ToDo: take into account L1 prescales too!
     int prescale_trigger40=1; int prescale_trigger60=1; int prescale_trigger80=1;
     int prescale_trigger140=1; int prescale_trigger200=1; int prescale_trigger260=1;
     int prescale_trigger320=1; int prescale_trigger400=1; int prescale_trigger500=1;
@@ -731,6 +908,7 @@ bool TriggerStudiesSingleJetModule::process(Event & event) {
 
     event.weight *= prescale_total;
     event.weight *= prescale_total_L1;
+    */
 
     //7. Fill hists
     h_trigger->fill(event);
@@ -837,218 +1015,362 @@ bool TriggerStudiesSingleJetModule::process(Event & event) {
 
     //7. Fill hists for each trigger path
     if(pass_trigger40) {
-      h_trg40->fill(event); h_trg40_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg40->fill(event); h_trg40_L2Res->fill(event); h_trg40_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg40_L2Res_BB->fill(event); 
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg40_MultMatch_BB->fill(event); 
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg40_L2Res_EC1->fill(event); 
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg40_MultMatch_EC1->fill(event); 
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg40_L2Res_EC2->fill(event); 
-      if(probejet_eta>=3.0)
+	h_trg40_MultMatch_EC2->fill(event); 
+      }
+      if(probejet_eta>=3.0){
 	h_trg40_L2Res_HF->fill(event); 
+	h_trg40_MultMatch_HF->fill(event); 
+      }
     }
     if(pass_trigger60) {
-      h_trg60->fill(event); h_trg60_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg60->fill(event); h_trg60_L2Res->fill(event); h_trg60_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg60_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg60_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg60_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg60_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg60_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg60_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg60_L2Res_HF->fill(event);
+	h_trg60_MultMatch_HF->fill(event);
+      }
 
     } 
     if(pass_trigger80) {
-      h_trg80->fill(event); h_trg80_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg80->fill(event); h_trg80_L2Res->fill(event); h_trg80_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg80_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg80_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg80_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg80_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg80_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg80_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg80_L2Res_HF->fill(event);
+	h_trg80_MultMatch_HF->fill(event);
+      }
 }
     if(pass_trigger140) {
-      h_trg140->fill(event); h_trg140_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg140->fill(event); h_trg140_L2Res->fill(event); h_trg140_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg140_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg140_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg140_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg140_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg140_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg140_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg140_L2Res_HF->fill(event);
+	h_trg140_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger200) {
-      h_trg200->fill(event); h_trg200_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg200->fill(event); h_trg200_L2Res->fill(event); h_trg200_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg200_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg200_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg200_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg200_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg200_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg200_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg200_L2Res_HF->fill(event);
+	h_trg200_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger260) {
-      h_trg260->fill(event); h_trg260_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg260->fill(event); h_trg260_L2Res->fill(event); h_trg260_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg260_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg260_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg260_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg260_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg260_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg260_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg260_L2Res_HF->fill(event);
+	h_trg260_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger320) {
-      h_trg320->fill(event); h_trg320_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg320->fill(event); h_trg320_L2Res->fill(event); h_trg320_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg320_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg320_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg320_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg320_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg320_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg320_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg320_L2Res_HF->fill(event);
+	h_trg320_MultMatch_HF->fill(event);
+      }
 
 } 
     if(pass_trigger400) {
-      h_trg400->fill(event); h_trg400_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg400->fill(event); h_trg400_L2Res->fill(event); h_trg400_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg400_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg400_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg400_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg400_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg400_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg400_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg400_L2Res_HF->fill(event);
+	h_trg400_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger500) {
-      h_trg500->fill(event); h_trg500_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trg500->fill(event); h_trg500_L2Res->fill(event); h_trg500_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trg500_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trg500_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trg500_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trg500_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trg500_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trg500_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trg500_L2Res_HF->fill(event);
+	h_trg500_MultMatch_HF->fill(event);
+      }
 
 }
 
 
     // HF triggers
     if(pass_trigger40_HFJEC) {
-      h_trgHF40->fill(event); h_trgHF40_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF40->fill(event); h_trgHF40_L2Res->fill(event); h_trgHF40_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF40_L2Res_BB->fill(event); 
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF40_MultMatch_BB->fill(event); 
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF40_L2Res_EC1->fill(event); 
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF40_MultMatch_EC1->fill(event); 
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF40_L2Res_EC2->fill(event); 
-      if(probejet_eta>=3.0)
+	h_trgHF40_MultMatch_EC2->fill(event); 
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF40_L2Res_HF->fill(event); 
+	h_trgHF40_MultMatch_HF->fill(event); 
+      }
     }
     if(pass_trigger60_HFJEC) {
-      h_trgHF60->fill(event); h_trgHF60_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF60->fill(event); h_trgHF60_L2Res->fill(event); h_trgHF60_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF60_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF60_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF60_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF60_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF60_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF60_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF60_L2Res_HF->fill(event);
+	h_trgHF60_MultMatch_HF->fill(event);
+      }
 
     } 
     if(pass_trigger80_HFJEC) {
-      h_trgHF80->fill(event); h_trgHF80_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF80->fill(event); h_trgHF80_L2Res->fill(event); h_trgHF80_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF80_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF80_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF80_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF80_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF80_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF80_MultMatch_EC2->fill(event);
+    }
+      if(probejet_eta>=3.0){
 	h_trgHF80_L2Res_HF->fill(event);
+	h_trgHF80_MultMatch_HF->fill(event);
+      }
 }
     if(pass_trigger140_HFJEC) {
-      h_trgHF140->fill(event); h_trgHF140_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF140->fill(event); h_trgHF140_L2Res->fill(event); h_trgHF140_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF140_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF140_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF140_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF140_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF140_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF140_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF140_L2Res_HF->fill(event);
+	h_trgHF140_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger200_HFJEC) {
-      h_trgHF200->fill(event); h_trgHF200_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF200->fill(event); h_trgHF200_L2Res->fill(event); h_trgHF200_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF200_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF200_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF200_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF200_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF200_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF200_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF200_L2Res_HF->fill(event);
+	h_trgHF200_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger260_HFJEC) {
-      h_trgHF260->fill(event); h_trgHF260_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF260->fill(event); h_trgHF260_L2Res->fill(event); h_trgHF260_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF260_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF260_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF260_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF260_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF260_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF260_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF260_L2Res_HF->fill(event);
+	h_trgHF260_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger320_HFJEC) {
-      h_trgHF320->fill(event); h_trgHF320_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF320->fill(event); h_trgHF320_L2Res->fill(event); h_trgHF320_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF320_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF320_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF320_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF320_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF320_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF320_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF320_L2Res_HF->fill(event);
+	h_trgHF320_MultMatch_HF->fill(event);
+      }
 
 } 
     if(pass_trigger400_HFJEC) {
-      h_trgHF400->fill(event); h_trgHF400_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF400->fill(event); h_trgHF400_L2Res->fill(event); h_trgHF400_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF400_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF400_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF400_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF400_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF400_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF400_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF400_L2Res_HF->fill(event);
+	h_trgHF400_MultMatch_HF->fill(event);
+      }
 
 }
     if(pass_trigger500_HFJEC) {
-      h_trgHF500->fill(event); h_trgHF500_L2Res->fill(event);
-      if(probejet_eta<=s_eta_barr)
+      h_trgHF500->fill(event); h_trgHF500_L2Res->fill(event); h_trgHF500_MultMatch->fill(event);
+      if(probejet_eta<=s_eta_barr){
 	h_trgHF500_L2Res_BB->fill(event);
-      if(probejet_eta>s_eta_barr && probejet_eta<2.5)
+	h_trgHF500_MultMatch_BB->fill(event);
+      }
+      if(probejet_eta>s_eta_barr && probejet_eta<2.5){
 	h_trgHF500_L2Res_EC1->fill(event);
-      if(probejet_eta>=2.5 && probejet_eta<3.0)
+	h_trgHF500_MultMatch_EC1->fill(event);
+      }
+      if(probejet_eta>=2.5 && probejet_eta<3.0){
 	h_trgHF500_L2Res_EC2->fill(event);
-      if(probejet_eta>=3.0)
+	h_trgHF500_MultMatch_EC2->fill(event);
+      }
+      if(probejet_eta>=3.0){
 	h_trgHF500_L2Res_HF->fill(event);
+	h_trgHF500_MultMatch_HF->fill(event);
+      }
 
 }
  
