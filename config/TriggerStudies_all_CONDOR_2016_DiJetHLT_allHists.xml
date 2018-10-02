@@ -29,7 +29,9 @@
 <!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2016B_wL1seeds_wL1prescales_wLowPtJets_wXCONE_wXCONE04R.xml"> 
 <!-- <!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2016B_withL1seeds_withL1prescales_withLowPtJets.xml"> -->
 
-<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterOFF_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pb_allEtaBins_allPtBins/">
+
+<!--  <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterOFF_DijetTriggers_PTabove02_allPtBins/"> -->
+<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterOFF_DijetTriggers_allPtBins/"> 
 
 ]>
 
@@ -46,11 +48,7 @@
    <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="&OUTdir;/" PostFix="" TargetLumi="1" >
    <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
 <!--
-   <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2016B" Cacheable="&CACHEABLE;">
-	  &DATA_RunB_AK4CHS;
-          <InputTree Name="AnalysisTree" /> 
-          <OutputTree Name="AnalysisTree" />
-        </InputData>   
+   
    <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2016C" Cacheable="&CACHEABLE;">
 	  &DATA_RunC_AK4CHS;
           <InputTree Name="AnalysisTree" /> 
@@ -81,11 +79,25 @@
           <OutputTree Name="AnalysisTree" />
         </InputData>            
 -->
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2016C" Cacheable="&CACHEABLE;">
+	  &DATA_RunC_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+
+<!--
+       <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2016B" Cacheable="&CACHEABLE;">
+	  &DATA_RunB_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>  
+
        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2016H" Cacheable="&CACHEABLE;">
 	  &DATA_RunH_AK4CHS;
           <InputTree Name="AnalysisTree" /> 
           <OutputTree Name="AnalysisTree" />
-        </InputData>            
+        </InputData>           
+--> 
 <!--
         <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017D" Cacheable="&CACHEABLE;">
 	  &DATA_RunD_AK4CHS;
@@ -154,6 +166,8 @@
             <Item Name="pileup_directory" Value="" />
       	   <!-- <Item Name="trigger" Value="HLT_DiPFJetAve40_v*"/> -->
             <Item Name="filtered_events" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/UnprefirableEventList_JetHT_Run2016BtoH.root" />
+
+            <Item Name="hotjets_maps" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/hotjets-17runBCDEF.root" />
 	    <Item Name="trigger40" Value="HLT_DiPFJetAve40_v*"/>
 	    <Item Name="trigger60" Value="HLT_DiPFJetAve60_v*"/>
 	    <Item Name="trigger80" Value="HLT_DiPFJetAve80_v*"/>

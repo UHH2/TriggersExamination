@@ -29,7 +29,10 @@
 <!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2016B_wL1seeds_wL1prescales_wLowPtJets_wXCONE_wXCONE04R.xml"> 
 <!-- <!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2016B_withL1seeds_withL1prescales_withLowPtJets.xml"> -->
 
-<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pbdRdPt_allEtaBins/">
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pbdRdPt_allEtaBins_addPtThresholddRMatching_fixL1Jcount/"> -->
+
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pbdRdPt_allEtaBins_skipL1Jbelow180inMatching/"> -->
+ <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2016_UnprefireableFilterON_DijetTriggers_L1Jabove180/"> 
 
 ]>
 
@@ -153,7 +156,8 @@
             <!-- configuration for MCPileupReweight (run as part of CommonModules): -->
             <Item Name="pileup_directory" Value="" />
       	   <!-- <Item Name="trigger" Value="HLT_DiPFJetAve40_v*"/> -->
-            <Item Name="filtered_events" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/UnprefirableEventList_JetHT_Run2016BtoH.root" />
+           <Item Name="filtered_events" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/UnprefirableEventList_JetHT_Run2016BtoH.root" />
+            <Item Name="hotjets_maps" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/hotmaps2016/hotjets-runGH.root" />
 	    <Item Name="trigger40" Value="HLT_DiPFJetAve40_v*"/>
 	    <Item Name="trigger60" Value="HLT_DiPFJetAve60_v*"/>
 	    <Item Name="trigger80" Value="HLT_DiPFJetAve80_v*"/>
