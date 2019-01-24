@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd"[
+<!ENTITY PROOFdir       "/nfs/dust/cms/user/karavdia/PROOF/">      
+<!ENTITY NEVT           "-1">
+<!-- <!ENTITY NEVT           "1000"> -->
+<!ENTITY CACHEABLE "False">
+<!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_tmp.xml"> -->
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy_JetHT2017F/"> -->
+
+<!--<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_tmpSmall.xml"> -->
+<!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_tmp.xml"> -->
+<!-- <!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/scripts/crab/DATA_JetHT_Run2017F_withL1seeds_17Nov_withLowPtJets.xml"> -->
+<!ENTITY DATA_RunF_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunE_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017E_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunD_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017D_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunC_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017C_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunB_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017B_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+<!ENTITY DATA_RunF_09May_AK4CHS SYSTEM "/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/datasets/RunII_94X_v2/DATA_JetHT_Run2017F_09May2018_withL1seeds_withL1prescales_withLowPtJets.xml"> 
+
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pbdRdPt_allEtaBins_addPtThresholddRMatching_JECV24noRes_fixL1Jcount/"> -->
+
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterON_DijetTriggers_addL1JetEtaPhi_patJetsAK4PFCHS_addMultMatch_L1L2L3_LumiPlots500pbdRdPt_allEtaBins_skipL1Jbelow180inMatching_JECV24noRes/"> -->
+
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterOFF_SinglejetTriggers_L1Jabove180/"> -->
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterOFF_SinglejetTriggers_PTratio07/"> -->
+
+<!-- <!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterOFF_SinglejetTriggers_PTabove02/"> -->
+<!ENTITY OUTdir "/nfs/dust/cms/user/karavdia/PreFireStudy/JetHT2017_UnprefireableFilterOFF_SinglejetTriggers_PTabove05/">
+
+]>
+
+<!--
+<ConfigParse NEventsBreak="0" FileSplit="3" AutoResubmit="7"/>
+<ConfigSGE RAM ="4" DISK ="3" Mail="anastasia.karavdina@desy.de" Notification="as" Workdir="workdir_PreFireStudy_UnprefireableFilterOFF_CONDOR_SingleJetTriggers_PTabove02"/>
+-->
+
+<!-- OutputLevel controls which messages are printed; set to VERBOSE or DEBUG for more verbosity, to WARNING or ERROR for less -->
+<JobConfiguration JobName="ExampleCycleJob" OutputLevel="INFO">
+    <Library Name="libSUHH2TriggerStudies"/>
+    <Package Name="SUHH2TriggerStudies.par" />
+
+   <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="&OUTdir;/" PostFix="" TargetLumi="1" >
+   <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017F_09May" Cacheable="&CACHEABLE;">
+	  &DATA_RunF_09May_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017F" Cacheable="&CACHEABLE;">
+	  &DATA_RunF_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017E" Cacheable="&CACHEABLE;">
+	  &DATA_RunE_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+             <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017D" Cacheable="&CACHEABLE;">
+	  &DATA_RunD_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017C" Cacheable="&CACHEABLE;">
+	  &DATA_RunC_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+        <InputData Lumi="1" NEventsMax="&NEVT;" Type="DATA" Version="Run2017B" Cacheable="&CACHEABLE;">
+	  &DATA_RunB_AK4CHS;
+          <InputTree Name="AnalysisTree" /> 
+          <OutputTree Name="AnalysisTree" />
+        </InputData>
+
+        <UserConfig>
+            <!-- define which collections to read from the input. Only specify what you need to save I/O time -->
+            <Item Name="PrimaryVertexCollection" Value="offlineSlimmedPrimaryVertices" /> 
+            <Item Name="ElectronCollection" Value="slimmedElectronsUSER" />
+            <Item Name="MuonCollection" Value="slimmedMuonsUSER" /> 
+<!--            <Item Name="TauCollection" Value="slimmedTaus" /> -->
+<!--            <Item Name="JetCollection" Value="slimmedJets" /> -->
+            <Item Name="JetCollection" Value="patJetsAK4PFCHS" />
+
+            <Item Name="GenJetCollection" Value="slimmedGenJets" />
+            <Item Name="METName" Value="slimmedMETs" />
+            <Item Name="L1EGseedsCollection" Value="L1EGamma_seeds"/>
+	    <Item Name="L1JseedsCollection" Value="L1Jet_seeds"/>
+
+
+            <!-- The list of available collections to read in corresponds to the pointer members in event. The 'Name's to use here in the configuration are:
+            
+                 PrimaryVertexCollection
+                 ElectronCollection
+                 MuonCollection
+                 TauCollection
+                 PhotonCollection
+                 JetCollection
+                 TopJetCollection
+                 METName
+                 
+                 GenInfoName
+                 GenJetCollection
+                 GenTopJetCollection
+                 GenParticleCollection
+                 
+                 Note that the last four are only read in for MC (InputData Type="MC"), so it is save to specify
+                 them for real data, although those branches do not exist.
+                 
+                 As 'Value', always use the branch name (if in doubt, open the input file in ROOT).
+                 
+                 By default, triggers are read. To explicitly disable reading triggers, use:
+                 <Item Name="readTrigger" Value="false" />
+            -->
+            
+            <!-- the class name of the AnalysisModule subclasses to run: -->
+            <Item Name="AnalysisModule" Value="TriggerStudies2017SingleJetModule" /> 
+            <Item Name="lumi_file" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/common/data/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.root"/>
+            <!-- tell AnalysisModuleRunner NOT to use the MC event weight from SFrame; rather let
+                 MCLumiWeight (called via CommonModules) calculate the MC event weight. The MC
+                 event weight assigned by MCLumiWeight is InputData.Lumi / Cycle.TargetLumi. -->
+            <Item Name="use_sframe_weight" Value="false" />
+            
+            <!-- configuration for MCPileupReweight (run as part of CommonModules): -->
+            <Item Name="pileup_directory" Value="" />
+      	   <!-- <Item Name="trigger" Value="HLT_DiPFJetAve40_v*"/> -->
+            <Item Name="filtered_events" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/UnprefirableEventList_JetHT_Run2017BtoF.root" />
+	    <Item Name="hotjets_maps" Value="/nfs/dust/cms/user/karavdia/CMSSW_9_4_3/src/UHH2/TriggersExamination/data/hotjets-17runBCDEF.root" />
+	    <Item Name="trigger40" Value="HLT_PFJet40_v*"/>
+	    <Item Name="trigger60" Value="HLT_PFJet60_v*"/>
+	    <Item Name="trigger80" Value="HLT_PFJet80_v*"/>
+	    <Item Name="trigger140" Value="HLT_PFJet140_v*"/>
+	    <Item Name="trigger200" Value="HLT_PFJet200_v*"/>
+	    <Item Name="trigger260" Value="HLT_PFJet260_v*"/>
+	    <Item Name="trigger320" Value="HLT_PFJet320_v*"/>
+	    <Item Name="trigger400" Value="HLT_PFJet400_v*"/>
+	    <Item Name="trigger450" Value="HLT_PFJet450_v*"/>     
+	    <Item Name="trigger500" Value="HLT_PFJet500_v*"/>
+
+	    <Item Name="trigger40_fwd" Value="HLT_PFJetFwd40_v*"/>
+	    <Item Name="trigger60_fwd" Value="HLT_PFJetFwd60_v*"/>
+	    <Item Name="trigger80_fwd" Value="HLT_PFJetFwd80_v*"/>	    
+	    <Item Name="Trigger_FWD" Value="True"/>
+	    <Item Name="trigger140_fwd" Value="HLT_PFJetFwd140_v*"/>
+	    <Item Name="trigger200_fwd" Value="HLT_PFJetFwd200_v*"/>
+	    <Item Name="trigger260_fwd" Value="HLT_PFJetFwd260_v*"/>
+	    <Item Name="trigger320_fwd" Value="HLT_PFJetFwd320_v*"/>      
+	    <Item Name="trigger400_fwd" Value="HLT_PFJetFwd400_v*"/>
+	    <Item Name="trigger450_fwd" Value="HLT_PFJetFwd450_v*"/>
+	    <Item Name="trigger500_fwd" Value="HLT_PFJetFwd500_v*"/>
+
+	    <Item Name="apply_unprefireable_filter" Value="False"/> 
+	    <Item Name="lumihists_lumi_per_bin" Value="500."/>
+	    <Item Name="fill_all_hists" Value="False"/> <!-- create and fill set of hists for each eta-pt bin -->
+        </UserConfig>
+    </Cycle>
+</JobConfiguration>
